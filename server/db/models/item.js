@@ -21,7 +21,7 @@ const Item = db.define('item', {
     type: Sequelize.INTEGER
   },
   tags: {
-    type: Sequelize.ARRAY
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
