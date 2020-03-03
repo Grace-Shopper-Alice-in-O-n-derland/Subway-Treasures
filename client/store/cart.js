@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 // initial state
+
 let myCart = localStorage.getItem('myCart')
 myCart = JSON.parse(myCart)
 
@@ -11,6 +12,8 @@ if (myCart === null) {
     console.log(el)
   })
 }
+
+let currentCart = []
 
 // cart is an array of objects
 // keys:
