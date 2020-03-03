@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -23,6 +23,8 @@ router.get('/', async (req, res, next) => {
 router.get('/me', (req, res, next) => {
   try {
     const user = req.user
+    console.log('order magic methods', Object.keys(Order.prototype))
+    console.log('user magic methods', Object.keys(User.prototype))
     if (!user) res.sendStatus(401)
     else res.json(user)
   } catch (error) {
@@ -35,7 +37,8 @@ router.post('/login', async (req, res, next) => {
     const user = await User.findOne({
       where: {
         email: req.body.email
-      }
+      },
+      include: [{model: Order}]
     })
 
     if (!user) {
