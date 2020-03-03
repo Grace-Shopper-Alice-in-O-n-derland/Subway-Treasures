@@ -39,7 +39,7 @@ export const UserHome = props => {
     <div>
       <h3>Welcome, {firstName}</h3>
       <div>
-        <h4 className="sc-fzoyAV jqBTNs">My Account</h4>
+        <h4>My Account</h4>
         <p>
           Name: {firstName} {lastName}
         </p>
