@@ -6,7 +6,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -15,6 +18,27 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     }
+  },
+  administrator: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  address: {
+    type: Sequelize.STRING
   },
   salt: {
     type: Sequelize.STRING,
@@ -62,6 +86,8 @@ const setSaltAndPassword = user => {
     user.password = User.encryptPassword(user.password(), user.salt())
   }
 }
+
+// Consider creating a hook to capitalize first and last names. Don't forget to think about hyphenated and double names when capitalizing
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
