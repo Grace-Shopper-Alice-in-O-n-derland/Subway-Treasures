@@ -4,6 +4,14 @@ const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Item} = require('../server/db/models')
 
+const orders = [
+  {status: 'CREATED', items: []},
+  {status: 'CREATED', items: []},
+  {status: 'COMPLETED', items: []},
+  {status: 'CANCELLED', items: []},
+  {status: 'PROCESSING', items: []}
+]
+
 const items = [
   {
     name: 'lost glove',
