@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 // import thunks from store
 import {fetchItems} from '../store/item'
+
 import DataTable from 'react-data-table-component'
 
 const data = [{id: 1, title: 'Conan the Barbarian', year: '1982'}]
