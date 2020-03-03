@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "subway-treasures",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An 8-day group project: a fully functional eCommerce website built in React, Redux, Express and Sequelize.",
   "engines": {
     "node": ">= 7.0.0"
   },
