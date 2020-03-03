@@ -2,6 +2,37 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
+const {Item} = require('../server/db/models')
+
+const items = [
+  {
+    name: 'lost glove',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'a lost glove, lightly worn',
+    quantity: 1,
+    tags: ['Lost Items']
+  },
+  {
+    name: 'metro card',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'a lost metro card, unknown value',
+    quantity: 5,
+    tags: ['Lost Items']
+  },
+  {
+    name: 'ketchup packet',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'a heinz ketchup packet',
+    quantity: 1,
+    tags: ['Food']
+  }
+]
 
 async function seed() {
   await db.sync({force: true})
@@ -23,7 +54,14 @@ async function seed() {
     })
   ])
 
+  await Promise.all(
+    items.map(item => {
+      return Item.create(item)
+    })
+  )
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${items.length} items`)
   console.log(`seeded successfully`)
 }
 
