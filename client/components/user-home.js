@@ -59,6 +59,7 @@ const mapState = state => {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
     address: state.user.address
+    // order: state.user.order
   }
 }
 
