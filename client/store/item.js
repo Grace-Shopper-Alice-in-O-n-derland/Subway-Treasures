@@ -47,6 +47,12 @@ export const fetchItem = id => {
   }
 }
 
+export const decrementItemQuantity = id => {
+  return async dispatch => {
+    //
+  }
+}
+
 /**
  * REDUCER
  */
