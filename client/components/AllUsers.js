@@ -13,19 +13,25 @@ class AllUsers extends Component {
 
     return (
       <div>
-        {allUsers.map(user => (
-          <SingleUserDisplay
-            email={user.email}
-            firstName={user.firstName}
-            lastName={user.lastName}
-          />
-        ))}
+        <h3>All Users</h3>
+        {allUsers ? (
+          allUsers.map(user => (
+            <SingleUserDisplay
+              key={user.id}
+              email={user.email}
+              firstName={user.firstName}
+              lastName={user.lastName}
+            />
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({allUsers: state.allUsers})
+const mapStateToProps = state => ({allUsers: state.user.allUsers})
 
 const mapDispatchToProps = dispatch => ({
   getAllUsers: () => dispatch(getAllUsers())
