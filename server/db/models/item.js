@@ -14,7 +14,9 @@ const Item = db.define('item', {
     type: Sequelize.TEXT
   },
   imageUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://image.shutterstock.com/image-illustration/coming-soon-brand-new-product-260nw-223020478.jpg'
   },
   quantity: {
     type: Sequelize.INTEGER
