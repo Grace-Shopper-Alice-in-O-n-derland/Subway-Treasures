@@ -57,7 +57,13 @@ const createApp = () => {
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      cookie: {
+        path: '/',
+        httpOnly: true,
+        //secure: process.env.NODE_ENV === "production" ? true : false,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
     })
   )
   app.use(passport.initialize())
