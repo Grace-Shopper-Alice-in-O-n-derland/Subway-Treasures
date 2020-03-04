@@ -1,8 +1,25 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
-const {Item} = require('../server/db/models')
+const {User, Item, Order} = require('../server/db/models')
+
+// structure: {product: {Product}, quantity: X, price: X}
+const orders = [
+  {status: 'CREATED'},
+  {status: 'CREATED'},
+  {status: 'PROCESSING'},
+  {status: 'COMPLETED'},
+  {status: 'COMPLETED'},
+  {status: 'CANCELLED'}
+]
+
+const orders = [
+  {status: 'CREATED', items: []},
+  {status: 'CREATED', items: []},
+  {status: 'COMPLETED', items: []},
+  {status: 'CANCELLED', items: []},
+  {status: 'PROCESSING', items: []}
+]
 
 const items = [
   {
@@ -243,11 +260,24 @@ async function seed() {
     })
   ])
 
-  await Promise.all(
+  const seededItems = await Promise.all(
     items.map(item => {
       return Item.create(item)
     })
   )
+
+  const seededOrders = await Promise.all(
+    orders.map(order => {
+      return Order.create(order)
+    })
+  )
+
+  await seededOrders[0].addItem(seededItems[0])
+  await seededOrders[0].addItem(seededItems[1])
+  await seededOrders[0].addItem(seededItems[2])
+
+  await seededOrders[0].setUser(users[0])
+  await seededOrders[1].setUser(users[0])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${items.length} items`)
