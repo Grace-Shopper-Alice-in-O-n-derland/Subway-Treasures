@@ -26,11 +26,12 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {/* <Route path="/items" component={Items} /> */}
         <Route exact path="/items/:id" component={SingleItem} />
-        <Route exact path="/" component={Items} />
+        <Route path="/home" component={Items} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/myaccount" component={UserHome} />
+            <Route path="/cart" component={Cart} />
             {isAdmin && (
               <Switch>
                 {/* Routes placed here are only available if user is an administrator */}
