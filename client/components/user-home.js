@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import DataTable from 'react-data-table-component'
+import SingleUserDisplay from './singleUserDisplay'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, firstName, lastName, address, orders} = props
+  const {email, administrator, firstName, lastName, address, orders} = props
   const columns = [
     {
       name: 'Order Number',
@@ -32,10 +34,24 @@ export const UserHome = props => {
       <h3>Welcome, {firstName}</h3>
       <div>
         <h4>My Account</h4>
-        <p>
-          Name: {firstName} {lastName}
-        </p>
-        <p>Email: {email}</p>
+        {administrator ? (
+          <div>
+            <SingleUserDisplay
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+            />
+            <Link to="/allusers">View All Users</Link>
+          </div>
+        ) : (
+          <div>
+            <SingleUserDisplay
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+            />
+          </div>
+        )}
       </div>
       <DataTable title="Order History" columns={columns} data={orders} />
     </div>
@@ -48,6 +64,7 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     email: state.user.email,
+    administrator: state.user.administrator,
     firstName: state.user.firstName,
     lastName: state.user.lastName,
     address: state.user.address,
