@@ -38,7 +38,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const item = await Item.findById(req.params.id)
+    const item = await Item.findByPk(req.params.id)
     if (item) {
       await item.update(req.body)
       res.json(item)

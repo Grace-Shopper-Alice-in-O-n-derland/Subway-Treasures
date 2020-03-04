@@ -9,14 +9,15 @@ export class SingleItem extends React.Component {
     this.props.fetchItem(this.props.match.params.id)
   }
 
-  handleAddToCart(item) {
+  handleAddToCart(item, newQuantity) {
     this.props.addToCart(item)
-    // this.props.decrementItemQuantity(item)
+    this.props.decrementItemQuantity(item.id, newQuantity)
   }
 
   render() {
     // console.log('SINGLE ITEM PROPS', this.props)
     const item = this.props.items.selectedItem
+    const newQuantity = item.quantity - 1
     if (!item || item === 'undefined' || Object.keys(item).length === 0) {
       return (
         <div>
@@ -46,8 +47,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchItem: id => dispatch(fetchItem(id)),
-  addToCart: item => dispatch(addToCart(item))
-  // decrementItemQuantity: id => dispatch(decrementItemQuantity(id))
+  addToCart: item => dispatch(addToCart(item)),
+  decrementItemQuantity: (id, quantity) =>
+    dispatch(decrementItemQuantity(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleItem)
