@@ -16,6 +16,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    // in general would prefer to not create with just req.body, and just take the necessary credentials you need from that object
     const item = await Item.create(req.body)
     res.json(item)
   } catch (error) {
@@ -23,7 +24,25 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+/*
+http://expressjs.com/en/5x/api.html#router.param
+router.param('id', async (req, res, next, id) => {
+  try {
+    const item = await Item.findByPk(req.params.id)
+    if (item) {
+      req.item = item;
+      next();
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (e) {
+      next(e)
+    }
+})
+*/
+
 router.get('/:id', async (req, res, next) => {
+  // res.json(req.item)
   try {
     const item = await Item.findByPk(req.params.id)
     if (item) {

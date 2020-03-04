@@ -12,6 +12,13 @@ const Order = require('./order')
 User.hasMany(Order)
 Order.belongsTo(User)
 Order.belongsToMany(Item, {through: 'fulfillment'})
+// const Fulfillment = db.define('fulfillment');
+// Order.belongsToMany(Item, { through: Fullfillment });
+/*
+Fulfillment Table -> its own existing file
+oId | itemId | quantity | price
+1   | 1      |   3      | 23456
+*/
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

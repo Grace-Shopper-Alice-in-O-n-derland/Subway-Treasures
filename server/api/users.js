@@ -2,7 +2,21 @@ const router = require('express').Router()
 const {User, Order} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+// remove (req.user.administrator) into its own callback function and place it in a separate file alongside a couple of other pieces of gatekeeping middleware to place in several different locations
+// updating a product and adding a product should only belong to certain users
+
+// if req.user exists, if req.user is self
+function isAdmin(req, res, next) {
+  if (req.user.administrator) next()
+  else {
+    const error = new Error('Unauthorized');
+    error.status = 401;
+    next(error);
+    // res.sendStatus(401);
+  }
+}
+
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     if (req.user.administrator) {
       const users = await User.findAll({
@@ -18,7 +32,7 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-})
+}, () => {})
 
 router.get('/me', (req, res, next) => {
   try {
@@ -29,6 +43,8 @@ router.get('/me', (req, res, next) => {
     next(error)
   }
 })
+
+// put it in a separate branch and then if you really want to keep a note of it in the master branch, you can add a TODO and type in exactly what you want fixed so that you can be reminded of what branch it's on
 
 // router.post('/signup', async (req, res, next) => {
 //   try {

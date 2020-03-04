@@ -37,6 +37,7 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
+  // virtual field for fullName if you wanted to be able to access this like a property & not have to concatenate first and last together every time and let Sequelize do it for you
   address: {
     type: Sequelize.STRING
   },

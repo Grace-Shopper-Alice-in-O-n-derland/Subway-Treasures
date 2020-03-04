@@ -67,6 +67,8 @@ export const getAllUsers = () => async dispatch => {
   }
 }
 
+// putting the all users in its own reducer to sort of keep user clean and relating to 1 person
+
 /**
  * REDUCER
  */

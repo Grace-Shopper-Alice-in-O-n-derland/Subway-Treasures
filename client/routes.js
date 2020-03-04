@@ -59,9 +59,21 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
+  /*
+    {
+      loadInitialData: () => {
+        dispatch...
+        dispatch...
+      }
+      }
+    }
+  */
   return {
     loadInitialData() {
       dispatch(me())
+      // dispatch(getProducts())
+      // load all of your products here
+      // all products, single product, and your cart display page to be stateless
     }
   }
 }

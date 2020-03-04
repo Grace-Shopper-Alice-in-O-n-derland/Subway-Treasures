@@ -10,6 +10,9 @@ const initialState = {
   selectedItem: {}
 }
 
+// putting them in 2 separate sub-reducers OR dealing with all of them in just the items reducer.
+// able to use 1 action constant across multiple reducers
+
 /**
  * ACTION TYPES
  */

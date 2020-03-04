@@ -8,6 +8,7 @@ if (localStorage.getItem('cart')) {
 }
 
 // initial state
+// initialState = []
 const initialState = {
   cart: currentCart
 }
@@ -37,6 +38,9 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       items = state.cart
       // search state to find if the item is already in the cart
+      // { 1: 5, 2: 1 }
+      // if (key in items) items[key]++
+      // else items[key] = 1
       searchIdx = items.indexOf(action.item)
       if (searchIdx > -1) {
         items[searchIdx].quantity++
