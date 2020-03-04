@@ -7,11 +7,11 @@ import DataTable from 'react-data-table-component'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, firstName, lastName, address} = props
+  const {email, firstName, lastName, address, orders} = props
   const columns = [
     {
       name: 'Order Number',
-      selector: 'orderNumber'
+      selector: 'id'
     },
     {
       name: 'Date',
@@ -26,14 +26,6 @@ export const UserHome = props => {
       selector: 'status'
     }
   ]
-  const data = [
-    {
-      orderNumber: '123456',
-      date: 'February 1, 2020',
-      total: '$100',
-      status: 'Completed'
-    }
-  ]
 
   return (
     <div>
@@ -45,7 +37,7 @@ export const UserHome = props => {
         </p>
         <p>Email: {email}</p>
       </div>
-      <DataTable title="Order History" columns={columns} data={data} />
+      <DataTable title="Order History" columns={columns} data={orders} />
     </div>
   )
 }
@@ -58,8 +50,8 @@ const mapState = state => {
     email: state.user.email,
     firstName: state.user.firstName,
     lastName: state.user.lastName,
-    address: state.user.address
-    // order: state.user.order
+    address: state.user.address,
+    orders: state.user.orders
   }
 }
 
