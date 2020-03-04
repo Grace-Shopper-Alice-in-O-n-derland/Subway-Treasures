@@ -15,7 +15,6 @@ export class Items extends React.Component {
   }
 
   render() {
-    console.log('MANY ITEM PROPS', this.props)
     const items = this.props.items.items
     if (!items || items === 'undefined' || items.length === 0) {
       return <p>No Items</p>
