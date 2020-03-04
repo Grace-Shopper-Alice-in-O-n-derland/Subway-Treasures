@@ -1,11 +1,17 @@
 import React from 'react'
-import {fetchItem} from '../store/item'
+import {fetchItem, decrementItemQuantity} from '../store/item'
 import {connect} from 'react-redux'
 import NotFound from './NotFound'
+import {addToCart} from '../store/cart'
 
 export class SingleItem extends React.Component {
   componentDidMount() {
     this.props.fetchItem(this.props.match.params.id)
+  }
+
+  handleAddToCart(item) {
+    this.props.addToCart(item)
+    this.props.decrementItemQuantity(item)
   }
 
   render() {
@@ -24,6 +30,9 @@ export class SingleItem extends React.Component {
           <img className="single-item-image" src={item.imageUrl} />
           <p>${item.price}</p>
           <p>{item.description}</p>
+          <button type="submit" onClick={() => this.addToCart(item)}>
+            Add to cart
+          </button>
         </div>
       )
     }
@@ -35,7 +44,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchItem: id => dispatch(fetchItem(id))
+  fetchItem: id => dispatch(fetchItem(id)),
+  addToCart: id => dispatch(addToCart(id)),
+  decrementItemQuantity: id => dispatch(decrementItemQuantity(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleItem)
