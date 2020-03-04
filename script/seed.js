@@ -48,6 +48,195 @@ const items = [
     description: 'a heinz ketchup packet',
     quantity: 1,
     tags: ['Food']
+  },
+  {
+    name: 'dollar bill',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'a dollar',
+    quantity: 6,
+    tags: ['Valuables', 'Lost Items']
+  },
+  {
+    name: 'crumbled paper',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'paper',
+    quantity: 4,
+    tags: ['Trash']
+  },
+  {
+    name: 'keys',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'lost keys',
+    quantity: 1,
+    tags: ['Lost Items']
+  },
+  {
+    name: 'tin of altoids',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'half full',
+    quantity: 1,
+    tags: ['Food']
+  },
+  {
+    name: 'receipt',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'a receipt dated March 5',
+    quantity: 1,
+    tags: ['Food']
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
+  },
+  {
+    name: 'coming soon',
+    price: 10.0,
+    imageUrl:
+      'https://lh3.googleusercontent.com/proxy/7mhvMfGE2CLzrmzcFY972FEwpPzHaQuDqcIiDr9zOm5rGRyvfb3LUmpKjgq5FPs-U-ZgDCGYbl82HC-IihnspXBl7f_u-HRoewmUc_ThDHornq44Qm0VmJK5Sj9bvp9BB4RgyYs',
+    description: 'description coming soon',
+    quantity: 1,
+    tags: []
   }
 ]
 

@@ -1,7 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchItems} from '../store/item'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from 'react-router-dom'
 
 export class Items extends React.Component {
   componentDidMount() {
@@ -9,22 +15,23 @@ export class Items extends React.Component {
   }
 
   render() {
+    console.log('MANY ITEM PROPS', this.props)
     const items = this.props.items.items
-    console.log(items)
     if (!items || items === 'undefined' || items.length === 0) {
       return <p>No Items</p>
     } else {
       return (
-        <div>
+        <div className="all-items-on-homepage">
           {items.map(element => (
-            <ul key={element.id}>
-              <Link to={`/items/${element.id}`}>
-                <li>{element.name}</li>
-              </Link>
-              <img src={element.imageUrl} />
-              <li>{element.price}</li>
-              <li>{element.description}</li>
-            </ul>
+            <div key={element.id} className="indiv-item-on-homepage">
+              <div className="indiv-item-info">
+                <Link Link to={`/items/${element.id}`}>
+                  {element.name}
+                </Link>
+                <img className="image-on-homepage" src={element.imageUrl} />
+                <p>${element.price}</p>
+              </div>
+            </div>
           ))}
         </div>
       )

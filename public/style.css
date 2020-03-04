@@ -37,3 +37,30 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.all-items-on-homepage {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+  margin: 25px 25px 25px 25px;
+}
+
+.indiv-item-info {
+  width: 150px;
+  align-self: center;
+}
+
+.image-on-homepage {
+  width: 150px;
+  align-self: center;
+}
+
+.single-item-view {
+  width: 400px;
+  margin: auto;
+}
+
+.single-item-image {
+  width: 400px;
+  margin: auto;
+}
