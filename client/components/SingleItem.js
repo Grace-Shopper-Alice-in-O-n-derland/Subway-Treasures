@@ -11,11 +11,11 @@ export class SingleItem extends React.Component {
 
   handleAddToCart(item) {
     this.props.addToCart(item)
-    this.props.decrementItemQuantity(item)
+    // this.props.decrementItemQuantity(item)
   }
 
   render() {
-    console.log('SINGLE ITEM PROPS', this.props)
+    // console.log('SINGLE ITEM PROPS', this.props)
     const item = this.props.items.selectedItem
     if (!item || item === 'undefined' || Object.keys(item).length === 0) {
       return (
@@ -30,7 +30,7 @@ export class SingleItem extends React.Component {
           <img className="single-item-image" src={item.imageUrl} />
           <p>${item.price}</p>
           <p>{item.description}</p>
-          <button type="submit" onClick={() => this.addToCart(item)}>
+          <button type="submit" onClick={() => this.handleAddToCart(item)}>
             Add to cart
           </button>
         </div>
@@ -40,13 +40,14 @@ export class SingleItem extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  items: state.item
+  items: state.item,
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchItem: id => dispatch(fetchItem(id)),
-  addToCart: id => dispatch(addToCart(id)),
-  decrementItemQuantity: id => dispatch(decrementItemQuantity(id))
+  addToCart: item => dispatch(addToCart(item))
+  // decrementItemQuantity: id => dispatch(decrementItemQuantity(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleItem)
