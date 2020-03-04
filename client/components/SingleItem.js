@@ -10,6 +10,7 @@ export class SingleItem extends React.Component {
   }
 
   handleAddToCart(item, newQuantity) {
+    event.preventDefault()
     this.props.addToCart(item)
     this.props.decrementItemQuantity(item.id, newQuantity)
   }
