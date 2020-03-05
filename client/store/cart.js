@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-let currentCart = {}
+let currentCart = []
 if (localStorage.getItem('cart')) {
   currentCart = JSON.parse(localStorage.getItem('cart'))
 } else {
-  currentCart = {}
+  currentCart = []
 }
 
 // initial state
@@ -12,19 +12,24 @@ const initialState = {
   cart: currentCart
 }
 
+//cartItem: {id: quantity}
+
 // action types
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 
 // action creators
 export const getCart = cart => ({type: GET_CART, cart})
-export const addToCart = id => ({type: ADD_TO_CART, id})
+export const addCartItem = id => ({type: ADD_TO_CART, id})
+
+//action.id
+//action.quantity
 
 // thunk creators
 export const fetchCart = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders`)
+      const {data} = await axios.get(`/api/cart`)
       dispatch(getCart(data))
     } catch (error) {
       console.error(error)
