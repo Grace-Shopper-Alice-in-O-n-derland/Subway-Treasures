@@ -1,12 +1,15 @@
 import axios from 'axios'
 
-// initial state
-
-let currentCart
+let currentCart = []
 if (localStorage.getItem('cart')) {
   currentCart = JSON.parse(localStorage.getItem('cart'))
 } else {
   currentCart = []
+}
+
+// initial state
+const initialState = {
+  cart: currentCart
 }
 
 // cart is an array of objects
@@ -26,14 +29,24 @@ export const getCart = () => ({type: GET_CART})
 export const addToCart = item => ({type: ADD_TO_CART, item})
 
 // sub-reducer
-export default function(state = currentCart, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
       return state
     case ADD_TO_CART:
-      localStorage.setItem('cart', JSON.stringify(action.item))
+      let items = state.cart
+      // search state to find if the item is already in the cart
+      let searchIdx = items.indexOf(action.item)
+      if (searchIdx > -1) {
+        items[searchIdx].quantity += 1
+      } else {
+        // edit the cart with new item, incrementing the quantity by 1
+        action.item.quantity += 1
+        items = [...state.cart, action.item]
+      }
+      localStorage.setItem('cart', JSON.stringify(items))
       // history.push('/cart')
-      return action.item
+      return items
     default:
       return state
   }

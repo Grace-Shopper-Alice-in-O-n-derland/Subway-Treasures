@@ -3,20 +3,16 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 // import thunks from store
-import {fetchItems} from '../store/item'
-import {addToCart} from '../store/cart'
+import {getCart, removeFromCart} from '../store/cart'
 
 class Cart extends React.Component {
   componentDidMount() {
-    this.props.fetchItems()
-    console.log('where are the items?', this.props)
+    this.props.getCart()
   }
 
-  // event.target? map that id to the item
-  handleClick(item) {
-    console.log('here is your item', item)
-    this.props.addToCart(item)
-    console.log('here is your cart', this.props.cart)
+  handleClick() {
+    console.log('here is your cart!', this.props.cart)
+    console.log('am I an array?', Array.isArray(this.props.cart))
   }
 
   render() {
@@ -25,10 +21,10 @@ class Cart extends React.Component {
         <h1>Cart will go here.</h1>
         <button
           onClick={() => {
-            this.handleClick(this.props.items[0])
+            this.handleClick()
           }}
         >
-          Add to Cart
+          Click to View Cart
         </button>
       </div>
     )
@@ -36,14 +32,12 @@ class Cart extends React.Component {
 }
 
 const mapState = state => ({
-  items: state.item.items,
-  cart: state.cart
+  cart: state.cart.cart
 })
 
 const mapDispatch = dispatch => {
   return {
-    fetchItems: () => dispatch(fetchItems()),
-    addToCart: item => dispatch(addToCart(item))
+    getCart: () => dispatch(getCart())
   }
 }
 
