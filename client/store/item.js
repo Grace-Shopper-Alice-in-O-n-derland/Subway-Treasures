@@ -49,11 +49,11 @@ export const fetchItem = id => {
   }
 }
 
-export const decrementItemQuantity = (id, newQuantity) => {
+export const decrementItemQuantity = (id, quantity) => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/items/${id}`, {
-        quantity: newQuantity
+        quantity: quantity
       })
       dispatch(updateItem(data))
     } catch (error) {
