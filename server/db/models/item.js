@@ -4,24 +4,36 @@ const db = require('../db')
 const Item = db.define('item', {
   name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    get() {
+      let value = this.getDataValue(price)
+      return value / 100
+    },
+    allowNull: false,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: 'Description to come but feel free to purchase!'
   },
   imageUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
   },
   quantity: {
-    type: Sequelize.INTEGER
-  },
-  tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0,
+      max: 100
+    }
   }
 })
 

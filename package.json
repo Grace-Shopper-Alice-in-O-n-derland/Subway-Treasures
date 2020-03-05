@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "subway-treasures",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An 8-day group project: a fully functional eCommerce website built in React, Redux, Express and Sequelize.",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -50,18 +50,20 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
-    "pg": "^7.9.0",
-    "pg-hstore": "^2.3.2",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-data-table-component": "^6.3.1",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.15.1",
-    "socket.io": "^2.2.0"
+    "sequelize": "^5.21.5",
+    "socket.io": "^2.2.0",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

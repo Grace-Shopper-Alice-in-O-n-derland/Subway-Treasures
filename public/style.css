@@ -2,6 +2,24 @@ body {
   font-family: sans-serif;
 }
 
+nav {
+  width: 100%;
+  height: 50px;
+  background-color: #eee;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+nav a:hover {
+  color: black;
+}
+
+.right {
+  float: right;
+}
+
 a {
   text-decoration: none;
 }
@@ -18,4 +36,31 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.all-items-on-homepage {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+  margin: 25px 25px 25px 25px;
+}
+
+.indiv-item-info {
+  width: 150px;
+  align-self: center;
+}
+
+.image-on-homepage {
+  width: 150px;
+  align-self: center;
+}
+
+.single-item-view {
+  width: 400px;
+  margin: auto;
+}
+
+.single-item-image {
+  width: 400px;
+  margin: auto;
 }

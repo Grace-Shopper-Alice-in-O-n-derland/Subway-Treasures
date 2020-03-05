@@ -1,16 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import DataTable from 'react-data-table-component'
+import SingleUserDisplay from './SingleUserDisplay'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {email, administrator, firstName, fullName, address, orders} = props
+  const columns = [
+    {
+      name: 'Order Number',
+      selector: 'id'
+    },
+    {
+      name: 'Date',
+      selector: 'date'
+    },
+    {
+      name: 'Total',
+      selector: 'total'
+    },
+    {
+      name: 'Status',
+      selector: 'status'
+    }
+  ]
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome {firstName}</h3>
+      <div>
+        <h4>My Account</h4>
+        {administrator ? (
+          <div>
+            <SingleUserDisplay email={email} fullName={fullName} />
+            <Link to="/allusers">View All Users</Link>
+          </div>
+        ) : (
+          <div>
+            <SingleUserDisplay email={email} fullName={fullName} />
+          </div>
+        )}
+      </div>
+      <DataTable title="Order History" columns={columns} data={orders} />
     </div>
   )
 }
@@ -20,7 +55,12 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    administrator: state.user.administrator,
+    firstName: state.user.firstName,
+    fullName: state.user.fullName,
+    address: state.user.address,
+    orders: state.user.orders
   }
 }
 
