@@ -39,7 +39,7 @@ export const UserHome = props => {
         {administrator ? (
           <div>
             <SingleUserDisplay email={email} fullName={fullName} />
-            <Link to="/allusers">View All Users</Link>
+            <Link to="/admin/allusers">View All Users</Link>
           </div>
         ) : (
           <div>
