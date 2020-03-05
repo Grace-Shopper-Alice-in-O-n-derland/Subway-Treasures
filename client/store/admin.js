@@ -8,7 +8,7 @@ const gotUsers = users => ({type: GOT_USERS, users})
 
 export const getUsers = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/users')
+    const {data} = await axios.get('/api/admin')
     dispatch(gotUsers(data))
   } catch (error) {
     console.error(err)

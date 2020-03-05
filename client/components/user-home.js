@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import DataTable from 'react-data-table-component'
 import SingleUserDisplay from './SingleUserDisplay'
 
+// DataTable documentation: https://www.npmjs.com/package/react-data-table-component
+
 /**
  * COMPONENT
  */
