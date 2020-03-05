@@ -25,19 +25,12 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const email = req.body.email
-    const password = req.body.password
-    const firstName = req.body.firstName
-    const lastName = req.body.lastName
-    const address = req.body.address
+    const {email, password, firstName, lastName, address} = req.body
 
-    const user = await User.create({
-      email,
-      password,
-      firstName,
-      lastName,
-      address
-    })
+    let newUser = {email, password, firstName, lastName}
+    if (address) newUser.address = address
+
+    const user = await User.create(newUser)
 
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {

@@ -1,11 +1,6 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 
-// remove (req.user.administrator) into its own callback function and place it in a separate file alongside a couple of other pieces of gatekeeping middleware to place in several different locations
-// updating a product and adding a product should only belong to certain users
-
-// if req.user exists, if req.user is self
-
 function isAdmin(req, res, next) {
   if (req.user.administrator) next()
   else {
@@ -30,7 +25,14 @@ router.get('/users', isAdmin, async (req, res, next) => {
 
 router.post('/', isAdmin, async (req, res, next) => {
   try {
-    const item = await Item.create(req.body)
+    const {name, price, description, imageUrl, quantity} = req.body
+
+    let newItem = {name, price, admin: false}
+    if (description) newItem.description = description
+    if (imageUrl) newItem.imageUrl = imageUrl
+    if (quantity) newItem.quantity = quantity
+
+    const item = await Item.create(newItem)
     res.json(item)
   } catch (error) {
     next(error)
