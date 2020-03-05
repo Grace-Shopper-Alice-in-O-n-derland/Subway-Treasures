@@ -7,22 +7,33 @@ const Item = db.define('item', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    get() {
+      let value = this.getDataValue(price)
+      return value / 100
+    },
+    allowNull: false,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: 'Description to come but feel free to purchase!'
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      'https://image.shutterstock.com/image-illustration/coming-soon-brand-new-product-260nw-223020478.jpg'
+    validate: {
+      isUrl: true
+    }
   },
   quantity: {
-    type: Sequelize.INTEGER
-  },
-  tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0,
+      max: 100
+    }
   }
 })
 

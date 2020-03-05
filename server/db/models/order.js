@@ -1,28 +1,35 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+const CREATED = 'CREATED'
+const PROCESSING = 'PROCESSING'
+const CANCELLED = 'CANCELLED'
+const COMPLETED = 'COMPLETED'
+
 const Order = db.define('order', {
   status: {
-    type: Sequelize.ENUM('CREATED', 'PROCESSING', 'CANCELLED', 'COMPLETED'),
+    type: Sequelize.ENUM(CREATED, PROCESSING, CANCELLED, COMPLETED),
     defaultValue: 'CREATED',
     allowNull: false
   },
-  // items: {
-  //   // structure: {product: {Product}, quantity: X, price: X}
-  //   type: Sequelize.ARRAY(Sequelize.JSON),
-  //   allowNull: false
-  // },
   date: {
     type: Sequelize.DATE,
-    defaultValue: new Date()
+    defaultValue: Sequelize.NOW()
+    //defaultValue: Sequelize.fn('now')
   },
-  // subTotal: {
-
-  // },
+  subTotal: {
+    type: Sequelize.INTEGER,
+    get() {
+      let value = this.getDataValue(subTotal)
+      return value / 100
+    },
+    allowNull: false,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
+  },
   recipientName: {
-    type: Sequelize.STRING
-  },
-  confirmationEmail: {
     type: Sequelize.STRING
   },
   recipientAddress: {
