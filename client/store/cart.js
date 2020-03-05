@@ -30,19 +30,20 @@ export const addToCart = item => ({type: ADD_TO_CART, item})
 
 // sub-reducer
 export default function(state = initialState, action) {
+  let items, searchIdx
   switch (action.type) {
     case GET_CART:
       return state
     case ADD_TO_CART:
-      let items = state.cart
+      items = state.cart
       // search state to find if the item is already in the cart
-      let searchIdx = items.indexOf(action.item)
+      searchIdx = items.indexOf(action.item)
       if (searchIdx > -1) {
-        items[searchIdx].quantity += 1
+        items[searchIdx].quantity++
       } else {
         // edit the cart with new item, incrementing the quantity by 1
         action.item.quantity += 1
-        items = [...state.cart, action.item]
+        items = [...items, action.item]
       }
       localStorage.setItem('cart', JSON.stringify(items))
       // history.push('/cart')

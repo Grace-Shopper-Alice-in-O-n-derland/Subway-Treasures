@@ -6,16 +6,27 @@ import {Link} from 'react-router-dom'
 import {getCart, removeFromCart} from '../store/cart'
 
 class Cart extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   componentDidMount() {
     this.props.getCart()
   }
 
   handleClick() {
-    console.log('here is your cart!', this.props.cart)
+    console.log('here is your cart', this.props.cart)
     console.log('am I an array?', Array.isArray(this.props.cart))
   }
 
+  handleClear() {
+    localStorage.clear()
+    console.log('cleared!')
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Cart will go here.</h1>
@@ -25,6 +36,15 @@ class Cart extends React.Component {
           }}
         >
           Click to View Cart
+        </button>
+        <br />
+        <br />
+        <button
+          onClick={() => {
+            this.handleClear()
+          }}
+        >
+          Click to Clear Cart
         </button>
       </div>
     )
