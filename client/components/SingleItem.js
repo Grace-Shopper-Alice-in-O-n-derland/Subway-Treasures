@@ -2,23 +2,20 @@ import React from 'react'
 import {fetchItem, decrementItemQuantity} from '../store/item'
 import {connect} from 'react-redux'
 import NotFound from './NotFound'
-import {addToCart} from '../store/cart'
+import QtyDropDown from './QtyDropDown'
 
 export class SingleItem extends React.Component {
   componentDidMount() {
     this.props.fetchItem(this.props.match.params.id)
   }
 
-  handleAddToCart(item, newQuantity) {
-    event.preventDefault()
-    this.props.addToCart(item)
-    this.props.decrementItemQuantity(item.id, newQuantity)
-  }
-
   render() {
     // console.log('SINGLE ITEM PROPS', this.props)
     const item = this.props.items.selectedItem
-    const newQuantity = item.quantity - 1
+    let quantityArr = []
+    for (let i = 1; i <= item.quantity; i++) {
+      quantityArr.push(i)
+    }
     if (!item || item === 'undefined' || Object.keys(item).length === 0) {
       return (
         <div>
@@ -27,14 +24,17 @@ export class SingleItem extends React.Component {
       )
     } else {
       return (
-        <div className="single-item-view">
-          <p>{item.name}</p>
-          <img className="single-item-image" src={item.imageUrl} />
-          <p>${item.price}</p>
-          <p>{item.description}</p>
-          <button type="submit" onClick={() => this.handleAddToCart(item)}>
-            Add to cart
-          </button>
+        <div>
+          <div className="single-item-view">
+            <p>{item.name}</p>
+            <img className="single-item-image" src={item.imageUrl} />
+            <p>${item.price}</p>
+            <p>{item.description}</p>
+            <p>Available: {item.quantity}</p>
+          </div>
+          <div>
+            <QtyDropDown quantityArr={quantityArr} currentItem={item} />
+          </div>
         </div>
       )
     }
@@ -47,10 +47,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchItem: id => dispatch(fetchItem(id)),
-  addToCart: item => dispatch(addToCart(item)),
-  decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity))
+  fetchItem: id => dispatch(fetchItem(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleItem)

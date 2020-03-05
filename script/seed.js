@@ -18,21 +18,21 @@ const items = [
     name: 'lost glove',
     price: 10.0,
     description: 'a lost glove, lightly worn',
-    quantity: 1,
+    quantity: 10,
     tags: ['Lost Items']
   },
   {
     name: 'metro card',
     price: 10.0,
     description: 'a lost metro card, unknown value',
-    quantity: 5,
+    quantity: 14,
     tags: ['Lost Items']
   },
   {
     name: 'ketchup packet',
     price: 10.0,
     description: 'a heinz ketchup packet',
-    quantity: 1,
+    quantity: 6,
     tags: ['Food']
   },
   {
@@ -53,21 +53,21 @@ const items = [
     name: 'keys',
     price: 10.0,
     description: 'lost keys',
-    quantity: 1,
+    quantity: 9,
     tags: ['Lost Items']
   },
   {
     name: 'tin of altoids',
     price: 10.0,
     description: 'half full',
-    quantity: 1,
+    quantity: 10,
     tags: ['Food']
   },
   {
     name: 'receipt',
     price: 10.0,
     description: 'a receipt dated March 5',
-    quantity: 1,
+    quantity: 5,
     tags: ['Food']
   },
   {
