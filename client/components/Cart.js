@@ -3,21 +3,22 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 // import thunks from store
-import {getCart, removeFromCart} from '../store/cart'
+import {fetchCart} from '../store/cart'
 
 class Cart extends React.Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
+    // consider a handleChange?
   }
 
   componentDidMount() {
-    this.props.getCart()
+    this.props.fetchCart()
   }
 
   handleClick() {
     console.log('here is your cart', this.props.cart)
-    console.log('am I an array?', Array.isArray(this.props.cart))
+    console.log('am I an array?', typeof this.props.cart)
   }
 
   handleClear() {
@@ -26,7 +27,6 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>Cart will go here.</h1>
@@ -52,12 +52,12 @@ class Cart extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart.cart
+  cart: state.cart
 })
 
 const mapDispatch = dispatch => {
   return {
-    getCart: () => dispatch(getCart())
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 
