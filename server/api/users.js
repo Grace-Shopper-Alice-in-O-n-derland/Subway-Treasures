@@ -6,10 +6,7 @@ router.get('/', async (req, res, next) => {
   try {
     if (req.user.administrator) {
       const users = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
-        attributes: ['id', 'email', 'firstName', 'lastName']
+        attributes: ['id', 'email', 'firstName', 'lastName', 'fullName']
       })
       res.json(users)
     } else {
@@ -53,15 +50,5 @@ router.get('/me', (req, res, next) => {
 //     } else {
 //       next(error)
 //     }
-//   }
-// })
-
-// router.delete('/logout', (req, res, next) => {
-//   try {
-//     req.session.destroy()
-//     req.logout()
-//     res.sendStatus(204)
-//   } catch (error) {
-//     next(error)
 //   }
 // })
