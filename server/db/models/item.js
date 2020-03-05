@@ -8,10 +8,6 @@ const Item = db.define('item', {
   },
   price: {
     type: Sequelize.INTEGER,
-    get() {
-      let value = this.getDataValue(price)
-      return value / 100
-    },
     allowNull: false,
     defaultValue: 0,
     validate: {
