@@ -14,15 +14,6 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
-  try {
-    const item = await Item.create(req.body)
-    res.json(item)
-  } catch (error) {
-    next(error)
-  }
-})
-
 router.get('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id)
@@ -41,21 +32,8 @@ router.put('/:id', async (req, res, next) => {
     const item = await Item.findByPk(req.params.id)
     if (item) {
       await item.update(req.body)
+      // make more secure so only the quantity can be changed
       res.json(item)
-    } else {
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const item = await Item.findById(req.params.id)
-    if (item) {
-      res.send(item)
-      await item.destroy()
     } else {
       res.sendStatus(404)
     }

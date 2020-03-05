@@ -34,7 +34,7 @@ class Routes extends Component {
             {isAdmin && (
               <Switch>
                 {/* Routes placed here are only available if user is an administrator */}
-                <Route path="/allusers" component={AllUsers} />
+                <Route path="/admin/allusers" component={AllUsers} />
               </Switch>
             )}
           </Switch>
