@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {fetchItem} from './item'
 
 let currentCart = {}
 if (localStorage.getItem('cart')) {
@@ -25,7 +24,7 @@ export const addToCart = id => ({type: ADD_TO_CART, id})
 export const fetchCart = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/items`)
+      const {data} = await axios.get(`/api/orders`)
       dispatch(getCart(data))
     } catch (error) {
       console.error(error)
