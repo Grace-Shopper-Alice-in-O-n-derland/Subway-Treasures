@@ -7,18 +7,10 @@ const Order = db.define('order', {
     defaultValue: 'CREATED',
     allowNull: false
   },
-  // items: {
-  //   // structure: {product: {Product}, quantity: X, price: X}
-  //   type: Sequelize.ARRAY(Sequelize.JSON),
-  //   allowNull: false
-  // },
   date: {
     type: Sequelize.DATE,
     defaultValue: new Date()
   },
-  // subTotal: {
-
-  // },
   recipientName: {
     type: Sequelize.STRING
   },

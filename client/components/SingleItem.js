@@ -9,10 +9,10 @@ export class SingleItem extends React.Component {
     this.props.fetchItem(this.props.match.params.id)
   }
 
-  handleAddToCart(item, newQuantity) {
+  handleAddToCart(id, newQuantity) {
     event.preventDefault()
-    this.props.addToCart(item)
-    this.props.decrementItemQuantity(item.id, newQuantity)
+    this.props.addToCart(id)
+    this.props.decrementItemQuantity(id, newQuantity)
   }
 
   render() {
@@ -32,7 +32,7 @@ export class SingleItem extends React.Component {
           <img className="single-item-image" src={item.imageUrl} />
           <p>${item.price}</p>
           <p>{item.description}</p>
-          <button type="submit" onClick={() => this.handleAddToCart(item)}>
+          <button type="submit" onClick={() => this.handleAddToCart(item.id)}>
             Add to cart
           </button>
         </div>
@@ -48,7 +48,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchItem: id => dispatch(fetchItem(id)),
-  addToCart: item => dispatch(addToCart(item)),
+  addToCart: id => dispatch(addToCart(id)),
   decrementItemQuantity: (id, quantity) =>
     dispatch(decrementItemQuantity(id, quantity))
 })
