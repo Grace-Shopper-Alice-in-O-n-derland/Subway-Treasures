@@ -6,6 +6,7 @@ router.param('id', async (req, res, next, id) => {
   try {
     const item = await Item.findByPk(req.params.id)
     if (item) {
+      item.getDollars()
       req.item = item
       next()
     } else {
@@ -21,6 +22,7 @@ router.get('/', async (req, res, next) => {
     const items = await Item.findAll({
       order: [['id', 'ASC']]
     })
+    items.forEach(item => item.getDollars())
     //call the items in ascending order by Id # each time so they
     //don't get out of order with future state changes
     res.json(items)

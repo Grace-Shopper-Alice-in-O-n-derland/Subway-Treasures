@@ -18,4 +18,9 @@ const Fulfillment = db.define('fulfillment', {
   }
 })
 
+Fulfillment.prototype.getDollars = function() {
+  const dollarPrice = this.price / 100
+  this.price = dollarPrice
+}
+
 module.exports = Fulfillment

@@ -33,4 +33,9 @@ const Order = db.define('order', {
   }
 })
 
+Order.prototype.getDollars = function() {
+  const dollarTotal = this.subTotal / 100
+  this.subTotal = dollarTotal
+}
+
 module.exports = Order

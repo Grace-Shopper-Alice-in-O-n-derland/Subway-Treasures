@@ -16,147 +16,147 @@ const orders = [
 const items = [
   {
     name: 'lost glove',
-    price: 10.0,
+    price: 1000,
     description: 'a lost glove, lightly worn',
     quantity: 10,
     tags: ['Lost Items']
   },
   {
     name: 'metro card',
-    price: 10.0,
+    price: 1000,
     description: 'a lost metro card, unknown value',
     quantity: 14,
     tags: ['Lost Items']
   },
   {
     name: 'ketchup packet',
-    price: 10.0,
+    price: 1000,
     description: 'a heinz ketchup packet',
     quantity: 6,
     tags: ['Food']
   },
   {
     name: 'dollar bill',
-    price: 10.0,
+    price: 1000,
     description: 'a dollar',
     quantity: 6,
     tags: ['Valuables', 'Lost Items']
   },
   {
     name: 'crumbled paper',
-    price: 10.0,
+    price: 1000,
     description: 'paper',
     quantity: 4,
     tags: ['Trash']
   },
   {
     name: 'keys',
-    price: 10.0,
+    price: 1000,
     description: 'lost keys',
     quantity: 9,
     tags: ['Lost Items']
   },
   {
     name: 'tin of altoids',
-    price: 10.0,
+    price: 1000,
     description: 'half full',
     quantity: 10,
     tags: ['Food']
   },
   {
     name: 'receipt',
-    price: 10.0,
+    price: 1000,
     description: 'a receipt dated March 5',
     quantity: 5,
     tags: ['Food']
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   },
   {
     name: 'coming soon',
-    price: 10.0,
+    price: 1000,
     description: 'coming soon',
     quantity: 1
   }
