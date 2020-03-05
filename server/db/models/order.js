@@ -19,10 +19,6 @@ const Order = db.define('order', {
   },
   subTotal: {
     type: Sequelize.INTEGER,
-    get() {
-      let value = this.getDataValue(subTotal)
-      return value / 100
-    },
     allowNull: false,
     defaultValue: 0,
     validate: {
