@@ -55,7 +55,7 @@ router.put('/:id', isAdmin, async (req, res, next) => {
 
 router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
-    const item = await Item.findById(req.params.id)
+    const item = await Item.findByPk(req.params.id)
     if (item) {
       res.send(item)
       await item.destroy()
