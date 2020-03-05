@@ -32,6 +32,17 @@ export const fetchCart = () => {
   }
 }
 
+export const addCartItem = (id, qty, price) => {
+  return async dispatch => {
+    try {
+      await axios.post('/api/orders/cart', {id: id, qty: qty, price: price})
+      dispatch(addToCart(id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 // sub-reducer
 export default function(state = initialState, action) {
   let items

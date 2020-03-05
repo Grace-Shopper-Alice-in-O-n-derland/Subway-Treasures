@@ -1,5 +1,5 @@
 import React from 'react'
-import {addToCart} from '../store/cart'
+import {addToCart, addCartItem} from '../store/cart'
 import {connect} from 'react-redux'
 import {decrementItemQuantity} from '../store/item'
 
@@ -8,7 +8,7 @@ class QtyDropDown extends React.Component {
     super(props)
 
     this.state = {
-      Qty: 0
+      Qty: 1
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -26,7 +26,8 @@ class QtyDropDown extends React.Component {
     const purchaseQty = this.state.Qty
     const itemId = item.id
     const newItemQty = item.quantity - this.state.Qty
-    // this.props.addCartItem(itemId, purchaseQty)
+    const itemPrice = item.price * purchaseQty
+    this.props.addCartItem(itemId, purchaseQty, itemPrice)
     //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
     this.props.decrementItemQuantity(itemId, newItemQty)
   }
@@ -53,7 +54,8 @@ class QtyDropDown extends React.Component {
 const mapDispatchToProps = dispatch => ({
   addToCart: id => dispatch(addToCart(id)),
   decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity))
+    dispatch(decrementItemQuantity(id, quantity)),
+  addCartItem: (id, qty, price) => dispatch(addCartItem(id, qty, price))
 })
 
 export default connect(null, mapDispatchToProps)(QtyDropDown)
