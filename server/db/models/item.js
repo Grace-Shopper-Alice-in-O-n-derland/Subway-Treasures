@@ -23,6 +23,7 @@ const Item = db.define('item', {
     validate: {
       isUrl: true
     }
+    //do we want to allow null or set a default image??
   },
   quantity: {
     type: Sequelize.INTEGER,
