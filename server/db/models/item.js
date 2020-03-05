@@ -33,4 +33,8 @@ const Item = db.define('item', {
   }
 })
 
+// Item.setPurchaseQty = function(id){
+//   const itemToPurchase =
+// }
+
 module.exports = Item

@@ -23,10 +23,12 @@ class QtyDropDown extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
+    const purchaseQty = this.state.Qty
+    const itemId = item.id
     const newItemQty = item.quantity - this.state.Qty
-    // this.props.addToCart(item, this.state.Qty)
+    // this.props.addCartItem(itemId, purchaseQty)
     //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-    this.props.decrementItemQuantity(item.id, newItemQty)
+    this.props.decrementItemQuantity(itemId, newItemQty)
   }
 
   render() {
@@ -49,7 +51,7 @@ class QtyDropDown extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: item => dispatch(addToCart(item)),
+  addToCart: id => dispatch(addToCart(id)),
   decrementItemQuantity: (id, quantity) =>
     dispatch(decrementItemQuantity(id, quantity))
 })
