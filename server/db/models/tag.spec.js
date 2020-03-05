@@ -8,7 +8,7 @@ describe('Tag model', () => {
     return db.sync({force: true})
   })
   beforeEach(() => {
-    tag = Tag.build({
+    Tag.build({
       tags: ['Metro Cards', 'Gloves']
     })
   })
@@ -18,7 +18,7 @@ describe('Tag model', () => {
 
   describe('definition of Tag attributes', () => {
     it('includes `tags` fields', () => {
-      return tag.save().then(savedTags => {
+      return Tag.save().then(savedTags => {
         expect(savedTags.tags).to.have.length(2)
         expect(savedTags.tags).to.equal('Metro Cards', 'Gloves')
       })

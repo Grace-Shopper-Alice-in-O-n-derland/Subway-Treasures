@@ -7,7 +7,7 @@ describe('The `Order` model', () => {
     return db.sync({force: true})
   })
   beforeEach(() => {
-    order = Order.build({
+    Order.build({
       status: 'CREATED',
       date: '2020-03-05',
       subTotal: 10,
@@ -21,7 +21,7 @@ describe('The `Order` model', () => {
 
   describe('definition of Order attributes', () => {
     it('includes `status`, `date`, `subTotal`,`recipientName`, `recipientAddress` fields', () => {
-      return order.save().then(savedOrder => {
+      return Order.save().then(savedOrder => {
         expect(savedOrder.status).to.equal('CREATED')
         expect(savedOrder.date).to.equal('2020-03-05')
         expect(savedOrder.subTotal).to.equal(10)
