@@ -78,11 +78,10 @@ router.post('/cart', async (req, res, next) => {
         }
       })
     } else {
-      let itemInOrder = order.getItems({
-        where: {
-          id: item.id
-        }
+      let itemInOrder = await order.getItems({
+        item
       })
+      console.log('!!!!!!!!!', itemInOrder)
       itemInOrder.quantity += req.body.qty
       await itemInOrder.save()
     }
