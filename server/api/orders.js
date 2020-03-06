@@ -70,7 +70,7 @@ router.post('/cart', async (req, res, next) => {
       // })
     }
     if (!order.hasItem(item)) {
-      console.log('HI')
+      console.log('HI!!!!!!!!!!!!!!')
       order.addItem(item, {
         through: {
           quantity: req.body.qty,
@@ -78,7 +78,11 @@ router.post('/cart', async (req, res, next) => {
         }
       })
     } else {
-      let itemInOrder = order.getItem(item)
+      let itemInOrder = order.getItems({
+        where: {
+          id: item.id
+        }
+      })
       itemInOrder.quantity += req.body.qty
       await itemInOrder.save()
     }
