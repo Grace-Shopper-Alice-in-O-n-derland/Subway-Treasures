@@ -22,7 +22,7 @@ const Order = db.define('order', {
   // },
   subTotal: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
     defaultValue: 0,
     validate: {
       min: 0
