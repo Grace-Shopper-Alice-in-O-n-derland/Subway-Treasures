@@ -34,6 +34,10 @@ const Item = db.define('item', {
   }
 })
 
+Item.prototype.getDollars = function() {
+  const dollarPrice = this.price / 100
+  this.price = dollarPrice
+}
 // Item.setPurchaseQty = function(id){
 //   const itemToPurchase =
 // }
