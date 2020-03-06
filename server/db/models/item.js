@@ -23,6 +23,7 @@ const Item = db.define('item', {
     validate: {
       isUrl: true
     }
+    //do we want to allow null or set a default image??
   },
   quantity: {
     type: Sequelize.INTEGER,
@@ -33,6 +34,10 @@ const Item = db.define('item', {
   }
 })
 
+Item.prototype.getDollars = function() {
+  const dollarPrice = this.price / 100
+  this.price = dollarPrice
+}
 // Item.setPurchaseQty = function(id){
 //   const itemToPurchase =
 // }
