@@ -72,13 +72,9 @@ router.post('/cart', async (req, res, next) => {
         price: req.body.price
       }
     })
-    const cartItem = await Fulfillment.findOne({
-      where: {
-        itemId: item.id,
-        orderId: order.id
-      }
-    })
-    res.json(cartItem)
+    order.subTotal = order.subTotal + req.body.price
+    await order.save()
+    res.json(order)
   } catch (error) {
     next(error)
   }

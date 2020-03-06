@@ -268,7 +268,7 @@ function (_React$Component) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: item.id
             }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Quantity: ", item.fulfillment.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Price: ", item.fulfillment.price));
-          })));
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "subtotal: ", element.subTotal));
         }));
       }
     }

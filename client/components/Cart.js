@@ -33,6 +33,7 @@ export class Cart extends React.Component {
                   </div>
                 ))}
               </div>
+              <p>subtotal: {element.subTotal}</p>
             </div>
           ))}
         </div>
