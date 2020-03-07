@@ -9,8 +9,6 @@ THESE ROUTES NEED TO BE BUILT OUT
 
 router.get('/cart', async (req, res, next) => {
   try {
-    console.log('IS THERE A USER', req.user.id)
-    console.log('MAGIC METHODS', Object.keys(Order.prototype))
     const order = await Order.findAll({
       where: {
         userId: req.user.id,
@@ -18,7 +16,6 @@ router.get('/cart', async (req, res, next) => {
       },
       include: [{model: Item}]
     })
-    console.log(order)
     res.json(order)
   } catch (error) {
     next(error)
@@ -57,20 +54,26 @@ router.post('/cart', async (req, res, next) => {
         status: 'CREATED'
       }
     })
+
+    // Grabbing the fulfillment from the database so we can update price and quantity
+    let fulfillment = await Fulfillment.findOne({
+      where: {
+        itemId: item.id,
+        orderId: order.id
+      }
+    })
+
     if (!order) {
       order = await Order.create({
         status: 'CREATED'
       })
-      order.setUser(req.user.id)
-      // order = await Order.create({
-      //   where: {
-      //     userId: req.user.id
-      //   },
-      //   include: [{model: Item}]
-      // })
+      await order.setUser(req.user.id)
     }
-    if (!order.hasItem(item)) {
-      console.log('HI!!!!!!!!!!!!!!')
+    // Set order.hasItem(item) equal to a value so it can be awaited
+    let testCase = await order.hasItem(item)
+    // Then test whether testCase is truthy or falsey
+    if (!testCase) {
+      // If falsey, add the item to the order
       order.addItem(item, {
         through: {
           quantity: req.body.qty,
@@ -78,12 +81,14 @@ router.post('/cart', async (req, res, next) => {
         }
       })
     } else {
-      let itemInOrder = await order.getItems({
-        item
-      })
-      console.log('!!!!!!!!!', itemInOrder)
-      itemInOrder.quantity += req.body.qty
-      await itemInOrder.save()
+
+      // If truthy, update the price and quantity of the items
+      fulfillment.quantity++
+      fulfillment.price += item.price
+      // Save the changes in the database
+      await fulfillment.save()
+      // Money in the backend is saved in pennies since javascript doesn't add decimals properly. The below instance method converts pennies to dollars for the frontend, but I don't think it's being sent properly, or there's something in the way it's rendered in the front end that doesn't display the dollar value properly
+      // fulfillment.getDollars()
     }
     order.subTotal = order.subTotal + req.body.price
     await order.save()
