@@ -26,7 +26,6 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const {email, password, firstName, lastName, address} = req.body
-    console.log('here is your request!!!!', req.body)
 
     let newUser = {email, password, firstName, lastName}
     if (address) newUser.address = address
