@@ -36,6 +36,15 @@ const Order = db.define('order', {
   }
 })
 
+Order.prototype.findItem = async function(item) {
+  let foundItem = await Item.findOne({
+    where: {
+      id: item.id
+    }
+  })
+  return foundItem
+}
+
 Order.prototype.getDollars = function() {
   const dollarTotal = this.subTotal / 100
   this.subTotal = dollarTotal

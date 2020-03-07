@@ -61,16 +61,13 @@ router.post('/cart', async (req, res, next) => {
       order = await Order.create({
         status: 'CREATED'
       })
-      order.setUser(req.user.id)
-      // order = await Order.create({
-      //   where: {
-      //     userId: req.user.id
-      //   },
-      //   include: [{model: Item}]
-      // })
+      await order.setUser(req.user.id)
     }
-    if (!order.hasItem(item)) {
-      console.log('HI')
+    // Set order.hasItem(item) equal to a value so it can be awaited
+    let testCase = await order.hasItem(item)
+    // Then test whether testCase is truthy or falsey
+    if (!testCase) {
+      // If falsey, add the item to the order
       order.addItem(item, {
         through: {
           quantity: req.body.qty,
@@ -78,9 +75,15 @@ router.post('/cart', async (req, res, next) => {
         }
       })
     } else {
-      let itemInOrder = order.getItem(item)
+      // If truthy, this code should ideally update the existing item?
+      // console.log(order.__proto__)
+
+      /* I made an instance method (findItem) that will find an item(findItem), and I think you just have to update the quantity and price through the Fulfillments through table?? It might not actually be necessary to find the item, though. I think this change needs to be made in fulfillments, but not exactly sure how to access and update it. */
+
+      let itemInOrder = await order.findItem(item)
+      // Below code is actually changing the quantity of the item itself, which is referring to stock and not the cart
       itemInOrder.quantity += req.body.qty
-      await itemInOrder.save()
+      // await itemInOrder.save()
     }
     order.subTotal = order.subTotal + req.body.price
     await order.save()
