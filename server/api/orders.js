@@ -81,6 +81,7 @@ router.post('/cart', async (req, res, next) => {
         }
       })
     } else {
+
       // If truthy, update the price and quantity of the items
       fulfillment.quantity++
       fulfillment.price += item.price
