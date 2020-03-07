@@ -15,10 +15,17 @@ const initialState = {
 // action types
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const DELETE_FROM_CART = 'DELETE_FROM_CART'
 
 // action creators
 export const getCart = cart => ({type: GET_CART, cart})
 export const addToCart = cartItem => ({type: ADD_TO_CART, cartItem})
+export const removeFromCart = cartItem => ({type: REMOVE_FROM_CART, cartItem})
+export const deleteItemFromCart = cartItem => ({
+  type: DELETE_FROM_CART,
+  cartItem
+})
 
 // thunk creators
 export const fetchCart = () => {
@@ -41,6 +48,32 @@ export const addCartItem = (id, qty, price) => {
         price: price
       })
       dispatch(addToCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const removeCartItem = (id, qty, price) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put('/api/orders/cart', {
+        id: id,
+        qty: qty,
+        price: price
+      })
+      dispatch(removeFromCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const deleteFromCart = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.delete(`/api/orders/cart/${id}`)
+      dispatch(deleteItemFromCart(data))
     } catch (error) {
       console.error(error)
     }

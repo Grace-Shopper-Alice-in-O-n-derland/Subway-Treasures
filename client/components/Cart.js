@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
+import RemoveFromCart from './RemoveFromCart'
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,6 +31,11 @@ export class Cart extends React.Component {
                     <p>{item.name}</p>
                     <p>Quantity: {item.fulfillment.quantity}</p>
                     <p>Price: {item.fulfillment.price}</p>
+                    <RemoveFromCart
+                      itemQty={item.fulfillment.quantity}
+                      itemPrice={item.fulfillment.price}
+                      currentItem={item}
+                    />
                   </div>
                 ))}
               </div>
