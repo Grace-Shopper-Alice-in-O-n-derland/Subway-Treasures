@@ -5,7 +5,7 @@ const Fulfillment = require('../db/models/fulfillment')
 
 router.get('/cart', async (req, res, next) => {
   try {
-    const order = await Order.findAll({
+    const order = await Order.findOne({
       where: {
         userId: req.user.id,
         status: 'CREATED'
@@ -65,7 +65,15 @@ router.put('/cart', async (req, res, next) => {
     // fulfillment.getDollars()
     order.subTotal = order.subTotal + req.body.price
     await order.save()
-    res.json(order)
+    //send the updated order back eager loaded with the items
+    const updatedOrder = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'CREATED'
+      },
+      include: [{model: Item}]
+    })
+    res.json(updatedOrder)
   } catch (error) {
     next(error)
   }
@@ -86,7 +94,14 @@ router.delete('/cart/:id', async (req, res, next) => {
     // Money in the backend is saved in pennies since javascript doesn't add decimals properly. The below instance method converts pennies to dollars for the frontend, but I don't think it's being sent properly, or there's something in the way it's rendered in the front end that doesn't display the dollar value properly
     // fulfillment.getDollars()
     await order.save()
-    res.json(order)
+    const updatedOrder = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'CREATED'
+      },
+      include: [{model: Item}]
+    })
+    res.json(updatedOrder)
   } catch (error) {
     next(error)
   }
@@ -137,7 +152,15 @@ router.post('/cart', async (req, res, next) => {
     }
     order.subTotal = order.subTotal + req.body.price
     await order.save()
-    res.json(order)
+    //send back relevent order information for the cart
+    const updatedOrder = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'CREATED'
+      },
+      include: [{model: Item}]
+    })
+    res.json(updatedOrder)
   } catch (error) {
     next(error)
   }
