@@ -17,7 +17,7 @@ class QtyDropDown extends React.Component {
 
   handleChange(event) {
     this.setState({
-      Qty: event.target.value
+      Qty: Number(event.target.value)
     })
   }
 
