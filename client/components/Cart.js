@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, processCart} from '../store/cart'
 import RemoveFromCart from './RemoveFromCart'
 import {
   BrowserRouter as Router,
@@ -38,6 +38,9 @@ export class Cart extends React.Component {
             ))}
           </div>
           <p>subtotal:{cart.subTotal}</p>
+          <button type="submit" onClick={this.props.processCart}>
+            Checkout
+          </button>
         </div>
       )
     }
@@ -50,7 +53,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    processCart: () => dispatch(processCart())
   }
 }
 
