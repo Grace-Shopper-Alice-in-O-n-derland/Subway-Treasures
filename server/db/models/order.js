@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Item = require('./item')
 
 const CREATED = 'CREATED'
 const PROCESSING = 'PROCESSING'

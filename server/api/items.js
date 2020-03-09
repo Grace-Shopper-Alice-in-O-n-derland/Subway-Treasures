@@ -39,14 +39,14 @@ router.get('/:id', (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
-  try {
-    let item = req.item
-    await item.update(req.body)
-    res.json(req.item)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.put('/:id', async (req, res, next) => {
+//   try {
+//     let item = req.item
+//     await item.update(req.body)
+//     res.json(req.item)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 module.exports = router
