@@ -17,9 +17,12 @@ const Order = db.define('order', {
     defaultValue: Sequelize.NOW()
     //defaultValue: Sequelize.fn('now')
   },
+  // items: {
+  //   type: Sequelize.ARRAY(Sequelize.JSON)
+  // },
   subTotal: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
     defaultValue: 0,
     validate: {
       min: 0
@@ -32,5 +35,10 @@ const Order = db.define('order', {
     type: Sequelize.STRING
   }
 })
+
+Order.prototype.getDollars = function() {
+  const dollarTotal = this.subTotal / 100
+  this.subTotal = dollarTotal
+}
 
 module.exports = Order
