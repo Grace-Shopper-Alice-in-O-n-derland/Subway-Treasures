@@ -80,6 +80,19 @@ export const deleteFromCart = id => {
   }
 }
 
+export const processCart = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put('/api/orders/cart/checkout', {
+        id
+      })
+      dispatch(getCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 // sub-reducer
 export default function(state = initialState, action) {
   // let items

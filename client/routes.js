@@ -11,6 +11,7 @@ import {
   SingleItem,
   AllUsers
 } from './components'
+import Checkout from './components/Checkout'
 import {me} from './store'
 
 /**
@@ -36,6 +37,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/myaccount" component={UserHome} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
             {isAdmin && (
               <Switch>
                 {/* Routes placed here are only available if user is an administrator */}
