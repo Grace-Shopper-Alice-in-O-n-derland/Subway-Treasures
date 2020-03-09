@@ -79,6 +79,23 @@ router.put('/cart', async (req, res, next) => {
   }
 })
 
+router.put('/cart/checkout', async (req, res, next) => {
+  try {
+    let order = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'CREATED'
+      },
+      include: [{model: Item}]
+    })
+    order.status = 'PROCESSING'
+    await order.save()
+    res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.delete('/cart/:id', async (req, res, next) => {
   try {
     // qty, item id, order id
