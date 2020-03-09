@@ -15,10 +15,17 @@ const initialState = {
 // action types
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const DELETE_FROM_CART = 'DELETE_FROM_CART'
 
 // action creators
 export const getCart = cart => ({type: GET_CART, cart})
-export const addToCart = cartItem => ({type: ADD_TO_CART, cartItem})
+export const addToCart = cart => ({type: ADD_TO_CART, cart})
+export const removeFromCart = cartItem => ({type: REMOVE_FROM_CART, cartItem})
+export const deleteItemFromCart = cartItem => ({
+  type: DELETE_FROM_CART,
+  cartItem
+})
 
 // thunk creators
 export const fetchCart = () => {
@@ -40,7 +47,33 @@ export const addCartItem = (id, qty, price) => {
         qty: qty,
         price: price
       })
-      dispatch(addToCart(data))
+      dispatch(getCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const removeCartItem = (id, qty, price) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put('/api/orders/cart', {
+        id: id,
+        qty: qty,
+        price: price
+      })
+      dispatch(getCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const deleteFromCart = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.delete(`/api/orders/cart/${id}`)
+      dispatch(getCart(data))
     } catch (error) {
       console.error(error)
     }
@@ -56,28 +89,6 @@ export default function(state = initialState, action) {
         ...state,
         cart: action.cart
       }
-    case ADD_TO_CART:
-      return {
-        ...state,
-        cart: [
-          ...state.cart.map(element => {
-            if (element.id === action.cartItem.id) {
-              return action.cartItem
-            } else {
-              return element
-            }
-          })
-        ]
-      }
-    // items = state.cart
-    // if (action.id in items) {
-    //   items[action.id]++
-    // } else {
-    //   items[action.id] = 1
-    // }
-    // localStorage.setItem('cart', JSON.stringify(items))
-    // history.push('/cart')
-    // return items
     default:
       return state
   }
