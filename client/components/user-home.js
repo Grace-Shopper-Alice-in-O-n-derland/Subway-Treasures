@@ -23,7 +23,7 @@ export const UserHome = props => {
     },
     {
       name: 'Total',
-      selector: 'total'
+      selector: 'subTotal'
     },
     {
       name: 'Status',
