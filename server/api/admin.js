@@ -10,6 +10,7 @@ function isAdmin(req, res, next) {
   }
 }
 
+// I do think the admin function is what should be moved around, and we maintain the same api routes in their own files to properly modularly show the difference
 router.get('/users', isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -28,10 +29,11 @@ router.post('/', isAdmin, async (req, res, next) => {
     const {name, price, description, imageUrl, quantity} = req.body
 
     let newItem = {name, price, admin: false}
+    // you can loop through the necessary requirements you want.
     if (description) newItem.description = description
     if (imageUrl) newItem.imageUrl = imageUrl
     if (quantity) newItem.quantity = quantity
-
+    // be aware - you don't have an Item model
     const item = await Item.create(newItem)
     res.json(item)
   } catch (error) {

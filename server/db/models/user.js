@@ -37,6 +37,7 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
+  // Yessss
   fullName: {
     type: Sequelize.VIRTUAL,
     get() {

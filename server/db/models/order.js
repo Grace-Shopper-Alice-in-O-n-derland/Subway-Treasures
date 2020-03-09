@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+// nice use of these constants
 const CREATED = 'CREATED'
 const PROCESSING = 'PROCESSING'
 const CANCELLED = 'CANCELLED'
@@ -9,6 +10,7 @@ const COMPLETED = 'COMPLETED'
 const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM(CREATED, PROCESSING, CANCELLED, COMPLETED),
+    // can use constant here
     defaultValue: 'CREATED',
     allowNull: false
   },

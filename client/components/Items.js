@@ -15,6 +15,7 @@ export class Items extends React.Component {
   }
 
   render() {
+    // what causes this to happen?
     const items = this.props.items.items
     if (!items || items === 'undefined' || items.length === 0) {
       return <p>No Items</p>
@@ -39,6 +40,7 @@ export class Items extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  // turning this into state.item.items
   items: state.item
   //double check this
 })
