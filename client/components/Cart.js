@@ -38,9 +38,11 @@ export class Cart extends React.Component {
             ))}
           </div>
           <p>subtotal:{cart.subTotal}</p>
-          <button type="submit" onClick={this.props.processCart}>
-            Checkout
-          </button>
+          <form action="/checkout">
+            <button type="submit" onClick={this.props.processCart} order={cart}>
+              Checkout
+            </button>
+          </form>
         </div>
       )
     }
