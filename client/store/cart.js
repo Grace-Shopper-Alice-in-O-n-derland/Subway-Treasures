@@ -40,10 +40,10 @@ export const addToCartThunk = item => {
   }
 }
 
-export const fetchCart = () => {
+export const fetchCart = userId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/cart`)
+      const {data} = await axios.get(`/api/users/${userId}/cart`)
       dispatch(getCart(data))
     } catch (error) {
       console.error(error)
@@ -51,11 +51,10 @@ export const fetchCart = () => {
   }
 }
 
-export const addCartItem = (id, qty, price) => {
+export const addCartItem = (itemId, qty, price, userId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/orders/cart', {
-        id: id,
+      const {data} = await axios.post(`/api/users/${userId}/cart/${itemId}`, {
         qty: qty,
         price: price
       })
@@ -66,13 +65,11 @@ export const addCartItem = (id, qty, price) => {
   }
 }
 
-export const removeCartItem = (id, qty, price) => {
+export const removeCartItem = (itemId, userId, qty) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put('/api/orders/cart', {
-        id: id,
-        qty: qty,
-        price: price
+      const {data} = await axios.put(`/api/users/${userId}/cart/${itemId}`, {
+        qty: qty
       })
       dispatch(getCart(data))
     } catch (error) {
@@ -81,10 +78,10 @@ export const removeCartItem = (id, qty, price) => {
   }
 }
 
-export const deleteFromCart = id => {
+export const deleteFromCart = (itemId, userId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.delete(`/api/orders/cart/${id}`)
+      const {data} = await axios.delete(`/api/users/${userId}/cart/${itemId}`)
       dispatch(getCart(data))
     } catch (error) {
       console.error(error)
@@ -92,18 +89,18 @@ export const deleteFromCart = id => {
   }
 }
 
-export const processCart = id => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.put('/api/orders/cart/checkout', {
-        id
-      })
-      dispatch(getCart(data))
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
+// export const processCart = id => {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.put('/api/orders/cart/checkout', {
+//         id
+//       })
+//       dispatch(getCart(data))
+//     } catch (error) {
+//       console.error(error)
+//     }
+//   }
+// }
 
 // sub-reducer
 export default function(state = initialState, action) {

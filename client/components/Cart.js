@@ -5,11 +5,11 @@ import RemoveFromCart from './RemoveFromCart'
 
 export class Cart extends React.Component {
   componentDidMount() {
-    this.props.fetchCart()
+    this.props.fetchCart(this.props.cart.userId)
   }
 
   render() {
-    const cart = this.props.cart.cart
+    const cart = this.props.cart
     if (!cart || cart === 'undefined' || cart.length === 0) {
       return <p>No cart</p>
     } else {

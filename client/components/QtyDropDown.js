@@ -1,7 +1,6 @@
 import React from 'react'
-import {addToCartThunk, addCartItem, setLocalCart} from '../store/cart'
+import {addToCartThunk, addCartItem} from '../store/cart'
 import {connect} from 'react-redux'
-import {decrementItemQuantity} from '../store/item'
 const _ = require('lodash')
 
 class QtyDropDown extends React.Component {
@@ -29,16 +28,20 @@ class QtyDropDown extends React.Component {
       // Where should I be setting the local cart? I put it in the cart sub-reducer, when it was here it was only setting one item at a time.
       // setLocalCart(this.props.cart)
     } else {
-      const purchaseQty = this.state.Qty
+      const userId = this.props.user.id
       const itemId = item.id
-      const newItemQty = item.quantity - this.state.Qty
-      const itemPrice = item.price * purchaseQty
-      this.props.addCartItem(itemId, purchaseQty, itemPrice)
-      this.props.decrementItemQuantity(itemId, newItemQty)
+      const purchaseQty = this.state.Qty
+      const itemPrice = item.price
+      this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
+      //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
+
+      // this.props.decrementItemQuantity(itemId, newItemQty) //replacing this with a hook
     }
   }
 
   render() {
+    console.log('PROPS', this.props)
+    console.log('STATE', this.state)
     return (
       <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
         <label>
@@ -57,7 +60,7 @@ class QtyDropDown extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   user: state.user,
   items: state.item,
   cart: state.cart
@@ -65,9 +68,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addToCartThunk: item => dispatch(addToCartThunk(item)),
-  decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity)),
-  addCartItem: (id, qty, price) => dispatch(addCartItem(id, qty, price))
+  addCartItem: (id, qty, price, user) =>
+    dispatch(addCartItem(id, qty, price, user))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(QtyDropDown)
+export default connect(mapState, mapDispatchToProps)(QtyDropDown)
