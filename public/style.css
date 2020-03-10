@@ -33,10 +33,10 @@ nav a {
   margin: 1em;
 }
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 .all-items-on-homepage {
   display: flex;
@@ -92,4 +92,89 @@ form div {
   text-transform: uppercase;
   color: #6c6763;
   padding-right: 2px;
+}
+
+.form-login .float {
+  width: 50%;
+  float: left;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 1);
+}
+
+.form-login .float:first-of-type {
+  padding-right: 5px;
+}
+
+.form-login .float:last-of-type {
+  padding-left: 5px;
+}
+.form-login label {
+  display: block;
+  padding: 0 0 5px 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+}
+
+.form-login label i {
+  margin-right: 5px;
+  display: inline-block;
+  width: 10px;
+}
+
+.form-login input[type='text'],
+.form-login input[type='password'] {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 3px solid #ebe6e2;
+  border-radius: 5px;
+  transition: all 0.3s ease-out;
+}
+
+.form-login input[type='text']:hover,
+.form-login input[type='password']:hover {
+  border-color: #ccc;
+}
+
+.form-login label:hover ~ input {
+  border-color: #ccc;
+}
+
+.form-login input[type='text']:focus,
+.form-login input[type='password']:focus {
+  border-color: #bbb;
+  outline: none;
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.form-login button {
+  width: 100%;
+  height: 38px;
+  float: left;
+  position: relative;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 38px; /* Same as height */
+  text-align: center;
+  font-weight: bold;
+  margin-left: 1%;
+  background: linear-gradient(#fbd568, #ffb347);
+  border: 1px solid #f4ab4c;
+  color: #996319;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.3);
 }
