@@ -8,6 +8,33 @@ describe('User model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
+  beforeEach(() => {
+    User.create({
+      email: 'cody@gmail.com',
+      password: '123',
+      administrator: false,
+      firstName: 'Cody',
+      lastName: 'Pug',
+      address: '111 Hanover Square'
+    })
+  })
+  afterEach(() => {
+    return Promise.all([User.truncate({cascade: true})])
+  })
+
+  describe('definition of User attributes', () => {
+    it('includes `email`, `password`, `administrator`,`firstName`, `lastName`, `fullName`, `address`, `salt`, `googleId` fields', () => {
+      return User.save().then(savedUser => {
+        expect(savedUser.email).to.equal('cody@gmail.com')
+        expect(savedUser.password).to.equal('123')
+        expect(savedUser.administrator).to.equal(false)
+        expect(savedUser.firstName).to.equal('Cody')
+        expect(savedUser.lastName).to.equal('Pug')
+        expect(savedUser.address).to.equal('111 Hanover Square')
+        expect(savedUser.fullName).to.equal(User.firstName, User.lastName)
+      })
+    })
+  })
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {

@@ -1,26 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllUsers} from '../store/user'
+import {getUsers} from '../store/admin'
 import SingleUserDisplay from './SingleUserDisplay'
 
 class AllUsers extends Component {
   componentDidMount() {
-    this.props.getAllUsers()
+    this.props.getUsers()
   }
 
   render() {
-    const allUsers = this.props.allUsers
+    const users = this.props.users
 
     return (
       <div>
         <h3>All Users</h3>
-        {allUsers ? (
-          allUsers.map(user => (
+        {users ? (
+          users.map(user => (
             <SingleUserDisplay
               key={user.id}
               email={user.email}
-              firstName={user.firstName}
-              lastName={user.lastName}
+              fullName={user.fullName}
             />
           ))
         ) : (
@@ -31,10 +30,10 @@ class AllUsers extends Component {
   }
 }
 
-const mapStateToProps = state => ({allUsers: state.user.allUsers})
+const mapStateToProps = state => ({users: state.admin.users})
 
 const mapDispatchToProps = dispatch => ({
-  getAllUsers: () => dispatch(getAllUsers())
+  getUsers: () => dispatch(getUsers())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllUsers)
