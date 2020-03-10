@@ -64,3 +64,32 @@ form div {
   width: 400px;
   margin: auto;
 }
+
+.form-login {
+  width: 340px;
+  margin: 60px auto 30px;
+  padding: 15px;
+  position: relative;
+  background: #fffaf6;
+  border-radius: 4px;
+  color: #7e7975;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.2),
+    0 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.form-login h1 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #bdb5aa;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ebe6e2;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.form-login h1 .log-in {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #6c6763;
+  padding-right: 2px;
+}
