@@ -5,6 +5,27 @@ const Fulfillment = require('../db/models/fulfillment')
 const User = require('../db/models/user')
 const isAdmin = require('./admin')
 
+router.get('/me', (req, res, next) => {
+  try {
+    const user = req.user
+    if (!user) res.sendStatus(401)
+    else res.json(user)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/allusers', isAdmin, async (req, res, next) => {
+  try {
+    const users = await User.findAll({
+      attributes: ['id', 'email', 'firstName', 'lastName', 'fullName']
+    })
+    res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:userId/cart', async (req, res, next) => {
   try {
     const order = await Order.findOne({
@@ -136,27 +157,6 @@ router.post('/:userId/cart/:itemId', async (req, res, next) => {
     res.json(updatedOrder)
   } catch (error) {
     next(error)
-  }
-})
-
-router.get('/me', (req, res, next) => {
-  try {
-    const user = req.user
-    if (!user) res.sendStatus(401)
-    else res.json(user)
-  } catch (error) {
-    next(error)
-  }
-})
-
-router.get('/allusers', isAdmin, async (req, res, next) => {
-  try {
-    const users = await User.findAll({
-      attributes: ['id', 'email', 'firstName', 'lastName', 'fullName']
-    })
-    res.json(users)
-  } catch (err) {
-    next(err)
   }
 })
 
