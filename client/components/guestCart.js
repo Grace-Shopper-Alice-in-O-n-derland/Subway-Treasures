@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getLocalCart} from '../store/cart'
-import {Link} from 'react-router-dom'
-import {GuestCheckout} from './guestCheckout'
+import {removeFromCart, getLocalCart, sendOrderThunk} from '../store/cart'
+const _ = require('lodash')
 
 class GuestCart extends React.Component {
   constructor() {
@@ -24,17 +23,24 @@ class GuestCart extends React.Component {
 
   componentDidMount() {
     this.props.getLocalCart()
+    this.getTotal()
   }
 
   getTotal() {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    let sum = this.state.subTotal
-    cart.map(item => {
+    let sum = 0
+    cart.forEach(item => {
       sum += item.price
     })
     this.setState({
       subTotal: sum
     })
+  }
+
+  removeItem(item) {
+    this.props.removeFromCart(item)
+    this.getTotal()
+    this.forceUpdate()
   }
 
   handleChange(event) {
@@ -44,38 +50,36 @@ class GuestCart extends React.Component {
   handleSubmit() {
     event.preventDefault()
     const user = this.state
+    const cart = this.props.cart
     const stringifiedUser = JSON.stringify(user)
     localStorage.setItem('user', stringifiedUser)
-    console.log(localStorage)
-    // how can I get GuestCheckout to render without giving it a new route?
-    // return (
-    //   <div>
-    //     <GuestCheckout props={this.props} />
-    //   </div>
-    // )
+    this.props.sendOrderThunk(user, cart)
     this.props.history.push('/guestcheckout')
   }
 
   render() {
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    const cart = this.props.cart
     return (
       <div>
         <h2>Here are your items:</h2>
-        {cart.length > 0 ? (
+        {cart && cart[0] ? (
           cart.map(item => {
             return (
               <div key={item.id}>
                 <img src={item.imageUrl} />
                 <p>{item.name}</p>
+                <button onClick={() => this.removeItem(item)}>
+                  Remove From Cart
+                </button>
               </div>
             )
           })
         ) : (
           <div>
-            <p>Something happened!</p>
+            <p>Nothing in cart!</p>
           </div>
         )}
-        <form onSubmit={this.handleSubmit}>
+        <form action="/guestcheckout" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"
@@ -131,14 +135,9 @@ class GuestCart extends React.Component {
             value={this.state.zip}
             onChange={this.handleChange}
           />
+          <p>Total: ${this.state.subTotal} + Tax + Shipping</p>
 
-          <br />
-          <br />
-
-          <p>Subtotal: {this.state.subTotal}</p>
-
-          <button type="submit">Guest Checkout</button>
-          <p>PAYPAL BUTTON GOES HERE</p>
+          <button type="submit">Complete Order</button>
         </form>
       </div>
     )
@@ -146,12 +145,14 @@ class GuestCart extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart
+  cart: state.cart.cart
 })
 
 const mapDispatch = dispatch => {
   return {
-    getLocalCart: () => getLocalCart()
+    getLocalCart: () => dispatch(getLocalCart()),
+    sendOrderThunk: (user, cart) => dispatch(sendOrderThunk(user, cart)),
+    removeFromCart: item => dispatch(removeFromCart(item))
   }
 }
 

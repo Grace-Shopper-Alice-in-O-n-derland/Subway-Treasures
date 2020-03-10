@@ -23,19 +23,14 @@ class QtyDropDown extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
+    const userId = this.props.user.id
+    const itemId = item.id
+    const purchaseQty = this.state.Qty
+    const itemPrice = item.price
     if (_.isEmpty(this.props.user)) {
-      this.props.addToCartThunk(item)
-      // Where should I be setting the local cart? I put it in the cart sub-reducer, when it was here it was only setting one item at a time.
-      // setLocalCart(this.props.cart)
+      this.props.addToCartThunk(item, purchaseQty, itemPrice)
     } else {
-      const userId = this.props.user.id
-      const itemId = item.id
-      const purchaseQty = this.state.Qty
-      const itemPrice = item.price
       this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
-      //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-
-      // this.props.decrementItemQuantity(itemId, newItemQty) //replacing this with a hook
     }
   }
 

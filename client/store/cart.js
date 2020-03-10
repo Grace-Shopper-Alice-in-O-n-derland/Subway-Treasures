@@ -14,7 +14,7 @@ const DELETE_FROM_CART = 'DELETE_FROM_CART'
 // action creators
 export const getCart = cart => ({type: GET_CART, cart})
 export const addToLocalCart = item => ({type: ADD_TO_LOCAL_CART, item})
-export const removeFromCart = cartItem => ({type: REMOVE_FROM_CART, cartItem})
+export const removeFromCart = item => ({type: REMOVE_FROM_CART, item})
 export const deleteItemFromCart = cartItem => ({
   type: DELETE_FROM_CART,
   cartItem
@@ -34,9 +34,31 @@ export const setLocalCart = cart => {
   localStorage.setItem('cart', stringifiedCart)
 }
 
-export const addToCartThunk = item => {
+export const addToCartThunk = (item, qty, price) => {
   return dispatch => {
-    dispatch(addToLocalCart(item))
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    if (cart) {
+      let existingItem = cart.filter(cartItem => cartItem.id === item.id)
+      if (existingItem[0]) {
+        existingItem.fulfillment = {
+          qty,
+          price: price * qty
+        }
+      } else {
+        dispatch(addToLocalCart(item))
+      }
+    }
+  }
+}
+
+export const sendOrderThunk = (user, cart) => {
+  return async dispatch => {
+    try {
+      await axios.post('/api/orders/guestcart', {user, cart})
+      dispatch(getLocalCart())
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
@@ -103,6 +125,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         cart: action.cart
+      }
+    case REMOVE_FROM_CART:
+      let newItems = state.cart.filter(item => item.id !== action.item.id)
+      setLocalCart(newItems)
+      return {
+        ...state,
+        cart: newItems
       }
     default:
       return state
