@@ -12,12 +12,12 @@ import {
 
 export class Cart extends React.Component {
   componentDidMount() {
-    this.props.fetchCart()
+    this.props.fetchCart(this.props.cart.userId)
   }
 
   render() {
     console.log('PROPS', this.props)
-    const cart = this.props.cart.cart
+    const cart = this.props.cart
     if (!cart || cart === 'undefined' || cart.length === 0) {
       return <p>No cart</p>
     } else {
@@ -50,7 +50,7 @@ export class Cart extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart
+  cart: state.cart.cart
 })
 
 const mapDispatch = dispatch => {

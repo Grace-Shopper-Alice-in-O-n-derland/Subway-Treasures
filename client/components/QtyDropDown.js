@@ -23,16 +23,19 @@ class QtyDropDown extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
-    const purchaseQty = this.state.Qty
+    const userId = this.props.user.id
     const itemId = item.id
-    const newItemQty = item.quantity - this.state.Qty
-    const itemPrice = item.price * purchaseQty
-    this.props.addCartItem(itemId, purchaseQty, itemPrice)
+    const purchaseQty = this.state.Qty
+    const itemPrice = item.price
+    this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
     //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-    this.props.decrementItemQuantity(itemId, newItemQty)
+
+    // this.props.decrementItemQuantity(itemId, newItemQty) //replacing this with a hook
   }
 
   render() {
+    console.log('PROPS', this.props)
+    console.log('STATE', this.state)
     return (
       <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
         <label>
@@ -51,11 +54,14 @@ class QtyDropDown extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  addToCart: id => dispatch(addToCart(id)),
-  decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity)),
-  addCartItem: (id, qty, price) => dispatch(addCartItem(id, qty, price))
+const mapState = state => ({
+  cart: state.cart.cart,
+  user: state.user
 })
 
-export default connect(null, mapDispatchToProps)(QtyDropDown)
+const mapDispatchToProps = dispatch => ({
+  addCartItem: (id, qty, price, user) =>
+    dispatch(addCartItem(id, qty, price, user))
+})
+
+export default connect(mapState, mapDispatchToProps)(QtyDropDown)
