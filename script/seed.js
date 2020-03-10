@@ -3,7 +3,6 @@
 const db = require('../server/db')
 const {User, Item, Order} = require('../server/db/models')
 
-// structure: {product: {Product}, quantity: X, price: X}
 const orders = [
   {status: 'CREATED'},
   {status: 'PROCESSING'},

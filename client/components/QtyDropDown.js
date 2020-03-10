@@ -1,7 +1,7 @@
 import React from 'react'
-import {addToCart, addCartItem} from '../store/cart'
+import {addToCartThunk, addCartItem} from '../store/cart'
 import {connect} from 'react-redux'
-import {decrementItemQuantity} from '../store/item'
+const _ = require('lodash')
 
 class QtyDropDown extends React.Component {
   constructor(props) {
@@ -27,10 +27,11 @@ class QtyDropDown extends React.Component {
     const itemId = item.id
     const purchaseQty = this.state.Qty
     const itemPrice = item.price
-    this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
-    //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-
-    // this.props.decrementItemQuantity(itemId, newItemQty) //replacing this with a hook
+    if (_.isEmpty(this.props.user)) {
+      this.props.addToCartThunk(item, purchaseQty, itemPrice)
+    } else {
+      this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
+    }
   }
 
   render() {
@@ -55,11 +56,13 @@ class QtyDropDown extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart.cart,
-  user: state.user
+  user: state.user,
+  items: state.item,
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
+  addToCartThunk: item => dispatch(addToCartThunk(item)),
   addCartItem: (id, qty, price, user) =>
     dispatch(addCartItem(id, qty, price, user))
 })
