@@ -89,30 +89,10 @@ export const deleteFromCart = (itemId, userId) => {
   }
 }
 
-// export const processCart = id => {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.put('/api/orders/cart/checkout', {
-//         id
-//       })
-//       dispatch(getCart(data))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
-
 // sub-reducer
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_LOCAL_CART:
-      // let id = action.item.id
-      // items = state.localCart
-      // if (id in items) {
-      //   items[id]++
-      // } else {
-      //   items[id] = 1
-      // }
       let obj = {
         ...state,
         cart: [...state.cart, action.item]
@@ -120,7 +100,6 @@ export default function(state = initialState, action) {
       setLocalCart(obj.cart)
       return obj
     case GET_CART:
-      setLocalCart(action.cart)
       return {
         ...state,
         cart: action.cart

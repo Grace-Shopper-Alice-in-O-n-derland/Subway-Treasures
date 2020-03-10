@@ -10,7 +10,7 @@ const COMPLETED = 'COMPLETED'
 const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM(CREATED, PROCESSING, CANCELLED, COMPLETED),
-    defaultValue: 'CREATED',
+    defaultValue: CREATED,
     allowNull: false
   },
   date: {

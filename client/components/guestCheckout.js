@@ -4,14 +4,14 @@ export const GuestCheckout = props => {
   return (
     <div>
       <h1>Thanks for your order!</h1>
-      <p>Total: $0</p>
+      <p>Total: ${this.props.subTotal}</p>
       <p>Your items will be sent to:</p>
       <ul>
-        <li>Name</li>
-        <li>Address</li>
-        <li>State</li>
-        <li>City</li>
-        <li>Zip</li>
+        <li>{this.props.name}</li>
+        <li>{this.props.address}</li>
+        <li>{this.props.city}</li>
+        <li>{this.props.estado}</li>
+        <li>{this.props.zip}</li>
       </ul>
     </div>
   )

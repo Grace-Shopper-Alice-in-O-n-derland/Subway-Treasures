@@ -58,7 +58,6 @@ class GuestCart extends React.Component {
 
   render() {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    console.log(cart)
     return (
       <div>
         <h2>Here are your items:</h2>
@@ -139,6 +138,7 @@ class GuestCart extends React.Component {
           <p>Subtotal: {this.state.subTotal}</p>
 
           <button type="submit">Guest Checkout</button>
+          <p>PAYPAL BUTTON GOES HERE</p>
         </form>
       </div>
     )
