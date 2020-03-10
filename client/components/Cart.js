@@ -12,7 +12,8 @@ import {
 
 export class Cart extends React.Component {
   componentDidMount() {
-    this.props.fetchCart(this.props.cart.userId)
+    console.log('HERE IS YOUR USER ID', this.props.user.id)
+    this.props.fetchCart(this.props.user.id)
   }
 
   render() {
@@ -50,12 +51,13 @@ export class Cart extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart.cart
+  cart: state.cart.cart,
+  user: state.user
 })
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart()),
+    fetchCart: id => dispatch(fetchCart(id)),
     processCart: () => dispatch(processCart())
   }
 }
