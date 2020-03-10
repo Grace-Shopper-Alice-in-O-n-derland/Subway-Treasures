@@ -20,6 +20,7 @@ const Item = db.define('item', {
   },
   imageUrl: {
     type: Sequelize.STRING,
+    // defaultValue: 'https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/181/2019/09/09091628/Image-Coming-Soon.png',
     validate: {
       isUrl: true
     }
@@ -29,7 +30,7 @@ const Item = db.define('item', {
     type: Sequelize.INTEGER,
     validate: {
       min: 0,
-      max: 100
+      max: 1000
     }
   }
 })
