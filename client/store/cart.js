@@ -114,14 +114,22 @@ export const deleteFromCart = (itemId, userId) => {
 export const processCart = id => {
   return async dispatch => {
     try {
-      console.log(`Hi, I'm your processCart thunk`)
-      const {data} = await axios.put('/api/users/cart/checkout')
+      const {data} = await axios.put(`/api/users/${id}/cart/checkout`)
       dispatch(getCart(data))
     } catch (error) {
       console.error(error)
     }
   }
 }
+
+// It worked to use the below route and just do res.sendStatus(201) in the API route since we don't actually need to call getCart and send anything to the front end, but it has an error pop up in the console that I can't read before the page refreshes
+// export const processCart = async id => {
+//   try {
+//     await axios.put(`/api/users/${id}/cart/checkout`)
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 // sub-reducer
 export default function(state = initialState, action) {

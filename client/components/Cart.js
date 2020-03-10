@@ -31,7 +31,11 @@ export class Cart extends React.Component {
           </div>
           <p>subtotal:{cart.subTotal}</p>
           <form action="/checkout">
-            <button type="submit" onClick={this.props.processCart} order={cart}>
+            <button
+              type="submit"
+              onClick={() => this.props.processCart(this.props.user.id)}
+              order={cart}
+            >
               Checkout
             </button>
           </form>
@@ -49,7 +53,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     fetchCart: id => dispatch(fetchCart(id)),
-    processCart: () => dispatch(processCart())
+    processCart: id => dispatch(processCart(id))
   }
 }
 

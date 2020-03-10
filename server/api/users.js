@@ -42,9 +42,8 @@ router.get('/:userId/cart', async (req, res, next) => {
 })
 
 //Going to incorporate the route below into the put route
-router.put('/cart/checkout', async (req, res, next) => {
+router.put('/:userId/cart/checkout', async (req, res, next) => {
   try {
-    console.log(`Yay! You're hitting the checkout api route!`)
     let order = await Order.findOne({
       where: {
         userId: req.user.id,
