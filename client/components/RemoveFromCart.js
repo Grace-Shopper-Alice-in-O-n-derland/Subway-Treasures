@@ -23,7 +23,7 @@ class RemoveFromCart extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
-    const userId = this.props.cart.userId
+    const userId = this.props.user.id
     const newCartQty = this.state.Qty
     const itemId = item.id
     this.props.removeCartItem(itemId, userId, newCartQty)
@@ -32,7 +32,7 @@ class RemoveFromCart extends React.Component {
   }
 
   handleDelete(item) {
-    const userId = this.props.cart.userId
+    const userId = this.props.user.id
     const itemId = item.id
     this.props.deleteFromCart(itemId, userId)
     // const removeQty = item.quantity + this.props.itemQty
@@ -71,7 +71,8 @@ class RemoveFromCart extends React.Component {
 }
 
 const mapState = state => ({
-  cart: state.cart.cart
+  cart: state.cart.cart,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
