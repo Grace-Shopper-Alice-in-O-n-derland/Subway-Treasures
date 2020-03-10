@@ -5,6 +5,7 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
+import 'semantic-ui-css/semantic.min.css'
 
 // establishes socket connection
 import './socket'
