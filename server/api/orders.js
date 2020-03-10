@@ -18,28 +18,6 @@ router.get('/cart', async (req, res, next) => {
   }
 })
 
-// //GET A SINGLE ITEM FROM THE CART BASED ON ID
-// router.get('/cart/:id', async (req, res, next) => {
-//   try {
-//     const order = await Order.findOne({
-//       where: {
-//         userId: req.user.id,
-//         status: 'CREATED'
-//       },
-//       include: [{model: Item}]
-//     })
-//     const item = await Fulfillment.findOne({
-//       where: {
-//         itemId: req.params.id,
-//         orderId: order.id
-//       }
-//     })
-//     res.json(item)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
 router.put('/cart', async (req, res, next) => {
   try {
     // qty, item id, order id

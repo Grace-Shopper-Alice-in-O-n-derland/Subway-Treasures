@@ -9,7 +9,9 @@ import {
   Cart,
   Items,
   SingleItem,
-  AllUsers
+  AllUsers,
+  GuestCart,
+  GuestCheckout
 } from './components'
 import Checkout from './components/Checkout'
 import {me} from './store'
@@ -32,12 +34,14 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/items/:id" component={SingleItem} />
         <Route path="/home" component={Items} />
+        <Route path="/guestcart" component={GuestCart} />
+        <Route path="/guestcheckout" render={GuestCheckout} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/myaccount" component={UserHome} />
-            <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/cart" component={Cart} />
             {isAdmin && (
               <Switch>
                 {/* Routes placed here are only available if user is an administrator */}

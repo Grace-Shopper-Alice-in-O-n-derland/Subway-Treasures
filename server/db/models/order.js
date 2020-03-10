@@ -15,14 +15,9 @@ const Order = db.define('order', {
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW()
-    //defaultValue: Sequelize.fn('now')
   },
-  // items: {
-  //   type: Sequelize.ARRAY(Sequelize.JSON)
-  // },
   subTotal: {
     type: Sequelize.INTEGER,
-    // allowNull: false,
     defaultValue: 0,
     validate: {
       min: 0
