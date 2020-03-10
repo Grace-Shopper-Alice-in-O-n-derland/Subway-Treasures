@@ -65,7 +65,8 @@ nav a {
   margin: auto;
 }
 
-.form-login {
+.form-login,
+.form-signup {
   width: 340px;
   margin: 60px auto 30px;
   padding: 15px;
@@ -77,7 +78,8 @@ nav a {
     0 0 0 12px rgba(255, 255, 255, 0.4);
 }
 
-.form-login h1 {
+.form-login h1,
+.form-signup h1 {
   font-size: 15px;
   font-weight: bold;
   color: #bdb5aa;
@@ -94,9 +96,21 @@ nav a {
   padding-right: 2px;
 }
 
+.form-signup h1 .sign-up {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #6c6763;
+  padding-right: 2px;
+}
+
 .form-login .float {
   width: 50%;
   float: left;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 1);
+}
+.form-signup .float {
+  width: 50%;
   padding-top: 15px;
   border-top: 1px solid rgba(255, 255, 255, 1);
 }
@@ -105,9 +119,18 @@ nav a {
   padding-right: 5px;
 }
 
+.form-signup .float:first-of-type {
+  padding-right: 5px;
+}
+
 .form-login .float:last-of-type {
   padding-left: 5px;
 }
+
+.form-signup .float:last-of-type {
+  padding-left: 5px;
+}
+
 .form-login label {
   display: block;
   padding: 0 0 5px 2px;
@@ -122,6 +145,15 @@ nav a {
   margin-right: 5px;
   display: inline-block;
   width: 10px;
+}
+.form-signup label {
+  display: block;
+  padding: 0 0 5px 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-size: 11px;
 }
 
 .form-login input[type='text'],
@@ -138,6 +170,19 @@ nav a {
   transition: all 0.3s ease-out;
 }
 
+.form-signup input[type='text'],
+.form-signup input[type='password'] {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 3px solid #ebe6e2;
+  border-radius: 5px;
+  transition: all 0.3s ease-out;
+}
 .form-login input[type='text']:hover,
 .form-login input[type='password']:hover {
   border-color: #ccc;
@@ -153,6 +198,12 @@ nav a {
   outline: none;
 }
 
+.form-signup input[type='text']:focus,
+.form-signup input[type='password']:focus {
+  border-color: #bbb;
+  outline: none;
+}
+
 .clearfix:after {
   content: '';
   display: table;
@@ -160,6 +211,26 @@ nav a {
 }
 
 .form-login button {
+  width: 100%;
+  height: 38px;
+  float: left;
+  position: relative;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 38px; /* Same as height */
+  text-align: center;
+  font-weight: bold;
+  margin-left: 1%;
+  background: linear-gradient(#fbd568, #ffb347);
+  border: 1px solid #f4ab4c;
+  color: #996319;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.form-signup button {
   width: 100%;
   height: 38px;
   float: left;

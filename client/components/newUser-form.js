@@ -11,39 +11,59 @@ const NewUserForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={name} className="form-signup">
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          <h1>
+            <span className="sign-up">Sign Up</span>
+          </h1>
+          <p className="float">
+            <label htmlFor="email">
+              <small>Email</small>
+            </label>
+            <input name="email" type="text" placeholder="Email" />
+          </p>
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <p className="float">
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              className="showPassword"
+            />
+          </p>
         </div>
         <div>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
-          <input name="firstName" type="text" />
+          <p className="float">
+            <label htmlFor="firstName">
+              <small>First Name</small>
+            </label>
+            <input name="firstName" type="text" placeholder="FirstName" />
+          </p>
         </div>
         <div>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
-          <input name="lastName" type="text" />
+          <p className="float">
+            <label htmlFor="lastName">
+              <small>Last Name</small>
+            </label>
+            <input name="lastName" type="text" placeholder="LastName" />
+          </p>
         </div>
         <div>
-          <label htmlFor="address">
-            <small>Address</small>
-          </label>
-          <input name="address" type="text" />
+          <p className="float">
+            <label htmlFor="address">
+              <small>Address</small>
+            </label>
+            <input name="address" type="text" placeholder="Address" />
+          </p>
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <p className="clearfix">
+            <button type="submit">{displayName}</button>
+          </p>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
