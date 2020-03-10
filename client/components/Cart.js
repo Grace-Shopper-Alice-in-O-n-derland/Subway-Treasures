@@ -5,7 +5,6 @@ import RemoveFromCart from './RemoveFromCart'
 
 export class Cart extends React.Component {
   componentDidMount() {
-    console.log('HERE IS YOUR USER ID', this.props.user.id)
     this.props.fetchCart(this.props.user.id)
   }
 

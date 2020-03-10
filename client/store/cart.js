@@ -111,6 +111,18 @@ export const deleteFromCart = (itemId, userId) => {
   }
 }
 
+export const processCart = id => {
+  return async dispatch => {
+    try {
+      console.log(`Hi, I'm your processCart thunk`)
+      const {data} = await axios.put('/api/users/cart/checkout')
+      dispatch(getCart(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 // sub-reducer
 export default function(state = initialState, action) {
   switch (action.type) {

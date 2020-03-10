@@ -41,6 +41,25 @@ router.get('/:userId/cart', async (req, res, next) => {
   }
 })
 
+//Going to incorporate the route below into the put route
+router.put('/cart/checkout', async (req, res, next) => {
+  try {
+    console.log(`Yay! You're hitting the checkout api route!`)
+    let order = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'CREATED'
+      },
+      include: [{model: Item}]
+    })
+    order.status = 'PROCESSING'
+    await order.save()
+    res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/:userId/cart/:itemId', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.itemId)
@@ -68,24 +87,6 @@ router.put('/:userId/cart/:itemId', async (req, res, next) => {
     next(error)
   }
 })
-
-//Going to incorporate the route below into the put route
-// router.put('/cart/checkout', async (req, res, next) => {
-//   try {
-//     let order = await Order.findOne({
-//       where: {
-//         userId: req.user.id,
-//         status: 'CREATED'
-//       },
-//       include: [{model: Item}]
-//     })
-//     order.status = 'PROCESSING'
-//     await order.save()
-//     res.json(order)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
 
 router.delete('/:userId/cart/:itemId', async (req, res, next) => {
   try {
