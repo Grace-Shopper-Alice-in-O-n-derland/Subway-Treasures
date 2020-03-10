@@ -1,8 +1,9 @@
 const router = require('express').Router()
-
 const Order = require('../db/models/order')
 const Item = require('../db/models/item')
 const Fulfillment = require('../db/models/fulfillment')
+const User = require('../db/models/user')
+const isAdmin = require('./admin')
 
 router.get('/:userId/cart', async (req, res, next) => {
   try {
@@ -145,6 +146,17 @@ router.get('/me', (req, res, next) => {
     else res.json(user)
   } catch (error) {
     next(error)
+  }
+})
+
+router.get('/allusers', isAdmin, async (req, res, next) => {
+  try {
+    const users = await User.findAll({
+      attributes: ['id', 'email', 'firstName', 'lastName', 'fullName']
+    })
+    res.json(users)
+  } catch (err) {
+    next(err)
   }
 })
 
