@@ -35,22 +35,24 @@ class QtyDropDown extends React.Component {
   }
 
   render() {
-    console.log('PROPS', this.props)
-    console.log('STATE', this.state)
     return (
-      <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
-        <label>
-          Qty:
-          <select value={this.state.value} onChange={this.handleChange}>
-            {this.props.quantityArr.map(element => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </select>
-        </label>
-        <input type="submit" value="Add to cart" />
-      </form>
+      <div className="single-item-view">
+        <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
+          <label>
+            Qty:
+            <select value={this.state.value} onChange={this.handleChange}>
+              {this.props.quantityArr.map(element => (
+                <option key={element} value={element}>
+                  {element}
+                </option>
+              ))}
+            </select>
+          </label>
+          {/* <input type="submit" value="Add to cart" /> */}
+          <br />
+          <button type="submit">Add to cart</button>
+        </form>
+      </div>
     )
   }
 }

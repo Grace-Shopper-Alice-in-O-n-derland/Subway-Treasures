@@ -15,11 +15,12 @@ export class Cart extends React.Component {
       return <p>No cart</p>
     } else {
       return (
-        <div>
+        <div className="single-item-view">
           <div>
             {cart.items.map(item => (
               <div key={item.id}>
                 <p>{item.name}</p>
+                <img src={item.imageUrl} />
                 <p>Quantity: {item.fulfillment.quantity}</p>
                 <p>Price: {item.fulfillment.itemPrice}</p>
                 <RemoveFromCart

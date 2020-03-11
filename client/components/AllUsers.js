@@ -12,7 +12,7 @@ class AllUsers extends Component {
     const users = this.props.users
 
     return (
-      <div>
+      <div className="column">
         <h3>All Users</h3>
         {users ? (
           users.map(user => (

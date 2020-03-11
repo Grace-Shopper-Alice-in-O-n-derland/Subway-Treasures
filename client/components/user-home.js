@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import DataTable from 'react-data-table-component'
+import DataTable, {createTheme} from 'react-data-table-component'
 import SingleUserDisplay from './SingleUserDisplay'
 
 // DataTable documentation: https://www.npmjs.com/package/react-data-table-component
@@ -11,7 +11,30 @@ import SingleUserDisplay from './SingleUserDisplay'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, administrator, firstName, fullName, address, orders} = props
+  const {email, administrator, firstName, fullName, orders} = props
+
+  createTheme('table', {
+    text: {
+      primary: '#252422',
+      secondary: '#2aa198'
+    },
+    background: {
+      default: '#e2d8cc'
+    },
+    context: {
+      background: '#cb4b16',
+      text: '#FFFFFF'
+    },
+    divider: {
+      default: '#073642'
+    },
+    action: {
+      button: 'rgba(0,0,0,.54)',
+      hover: 'rgba(0,0,0,.08)',
+      disabled: 'rgba(0,0,0,.12)'
+    }
+  })
+
   const columns = [
     {
       name: 'Order Number',
@@ -33,7 +56,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome {firstName}</h3>
+      <h3>Welcome, {firstName}!</h3>
       <div>
         <h4>My Account</h4>
         {administrator ? (
@@ -47,7 +70,14 @@ export const UserHome = props => {
           </div>
         )}
       </div>
-      <DataTable title="Order History" columns={columns} data={orders} />
+      <DataTable
+        title="Order History"
+        columns={columns}
+        data={orders}
+        theme="table"
+      />
+      <br />
+      <br />
     </div>
   )
 }

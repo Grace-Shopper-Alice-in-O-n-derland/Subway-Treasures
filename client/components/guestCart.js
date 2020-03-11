@@ -60,85 +60,89 @@ class GuestCart extends React.Component {
   render() {
     const cart = this.props.cart
     return (
-      <div>
+      <div className="guest-cart-title">
         <h2>Here are your items:</h2>
-        {cart && cart[0] ? (
-          cart.map(item => {
-            return (
-              <div key={item.id}>
-                <img src={item.imageUrl} />
-                <p>{item.name}</p>
-                <button onClick={() => this.removeItem(item)}>
-                  Remove From Cart
-                </button>
-              </div>
-            )
-          })
-        ) : (
-          <div>
-            <p>Nothing in cart!</p>
-          </div>
-        )}
-        <form action="/guestcheckout" onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            value={this.state.firstName}
-            onChange={this.handleChange}
-          />
+        <div className="list">
+          {cart && cart[0] ? (
+            cart.map(item => {
+              return (
+                <div key={item.id}>
+                  <img src={item.imageUrl} />
+                  <p>{item.name}</p>
+                  <button onClick={() => this.removeItem(item)}>
+                    Remove From Cart
+                  </button>
+                </div>
+              )
+            })
+          ) : (
+            <div>
+              <p>Nothing in cart!</p>
+            </div>
+          )}
+          <form action="/guestcheckout" onSubmit={this.handleSubmit}>
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              value={this.state.firstName}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={this.state.lastName}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.lastName}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="address">Street Address</label>
-          <input
-            type="text"
-            name="address"
-            value={this.state.address}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="address">Street Address</label>
+            <input
+              type="text"
+              name="address"
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            name="city"
-            value={this.state.city}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="city">City</label>
+            <input
+              type="text"
+              name="city"
+              value={this.state.city}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="estado">State</label>
-          <input
-            type="text"
-            name="estado"
-            value={this.state.estado}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="estado">State</label>
+            <input
+              type="text"
+              name="estado"
+              value={this.state.estado}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="zip">Zip Code</label>
-          <input
-            type="text"
-            name="zip"
-            value={this.state.zip}
-            onChange={this.handleChange}
-          />
-          <p>Total: ${this.state.subTotal} + Tax + Shipping</p>
+            <label htmlFor="zip">Zip Code</label>
+            <input
+              type="text"
+              name="zip"
+              value={this.state.zip}
+              onChange={this.handleChange}
+            />
+            <p>Total: ${this.state.subTotal} + Tax + Shipping</p>
 
-          <button type="submit">Complete Order</button>
-        </form>
+            <button type="submit">Complete Order</button>
+          </form>
+        </div>
+        <br />
+        <br />
       </div>
     )
   }
