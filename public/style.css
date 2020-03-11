@@ -64,11 +64,6 @@ nav a {
   margin: 1em;
 }
 
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
-
 .all-items-on-homepage {
   display: flex;
   flex-wrap: wrap;
@@ -279,7 +274,8 @@ nav a {
   border: 1px solid #f4ab4c;
   color: #996319;
   text-shadow: 0 1px rgba(255, 255, 255, 0.3);
-=======
+}
+
 .guest-cart-title {
   text-align: center;
 }
@@ -298,7 +294,7 @@ nav a {
   flex-direction: column;
 }
 
-button {
+button.cart {
   padding: 1em 2em;
   background-color: #fccc0a;
   border: none;

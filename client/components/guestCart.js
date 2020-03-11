@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {removeFromCart, getLocalCart, sendOrderThunk} from '../store/cart'
-const _ = require('lodash')
 
 class GuestCart extends React.Component {
   constructor() {
@@ -69,7 +68,10 @@ class GuestCart extends React.Component {
                 <div key={item.id}>
                   <img src={item.imageUrl} />
                   <p>{item.name}</p>
-                  <button onClick={() => this.removeItem(item)}>
+                  <button
+                    className="cart"
+                    onClick={() => this.removeItem(item)}
+                  >
                     Remove From Cart
                   </button>
                 </div>
@@ -138,7 +140,9 @@ class GuestCart extends React.Component {
             />
             <p>Total: ${this.state.subTotal} + Tax + Shipping</p>
 
-            <button type="submit">Complete Order</button>
+            <button className="cart" type="submit">
+              Complete Order
+            </button>
           </form>
         </div>
         <br />
