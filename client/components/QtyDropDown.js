@@ -50,7 +50,9 @@ class QtyDropDown extends React.Component {
           </label>
           {/* <input type="submit" value="Add to cart" /> */}
           <br />
-          <button type="submit">Add to cart</button>
+          <button className="cart" type="submit">
+            Add to cart
+          </button>
         </form>
       </div>
     )

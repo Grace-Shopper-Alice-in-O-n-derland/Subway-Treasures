@@ -32,7 +32,10 @@ class GuestCheckout extends React.Component {
               <li>{user.zip}</li>
             </ul>
             <form action="/home">
-              <button onClick={() => localStorage.setItem('cart', '[]')}>
+              <button
+                className="cart"
+                onClick={() => localStorage.setItem('cart', '[]')}
+              >
                 Start New Order
               </button>
             </form>
