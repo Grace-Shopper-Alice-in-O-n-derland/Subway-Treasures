@@ -26,7 +26,7 @@ class GuestCart extends React.Component {
   }
 
   getTotal() {
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    const cart = this.props.cart
     let sum = 0
     cart.forEach(item => {
       sum += item.price
