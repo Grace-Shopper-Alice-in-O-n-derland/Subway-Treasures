@@ -11,7 +11,7 @@ import SingleUserDisplay from './SingleUserDisplay'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, administrator, firstName, fullName, address, orders} = props
+  const {email, administrator, firstName, fullName, orders} = props
   const columns = [
     {
       name: 'Order Number',
@@ -33,7 +33,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome {firstName}</h3>
+      <h3>Welcome, {firstName}!</h3>
       <div>
         <h4>My Account</h4>
         {administrator ? (
