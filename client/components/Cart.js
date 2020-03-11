@@ -32,6 +32,7 @@ export class Cart extends React.Component {
           </div>
           <form action="/checkout">
             <button
+              className="cart"
               type="submit"
               onClick={() => this.props.processCart(this.props.user.id)}
               order={cart}
