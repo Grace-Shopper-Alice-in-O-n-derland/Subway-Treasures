@@ -141,6 +141,8 @@ class GuestCart extends React.Component {
             <button type="submit">Complete Order</button>
           </form>
         </div>
+        <br />
+        <br />
       </div>
     )
   }

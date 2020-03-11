@@ -130,3 +130,13 @@ form {
   flex-direction: column;
   margin: 1em;
 }
+
+.remove-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.subtotal {
+  text-align: center;
+}

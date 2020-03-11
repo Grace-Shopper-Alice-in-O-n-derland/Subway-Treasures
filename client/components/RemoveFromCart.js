@@ -45,7 +45,7 @@ class RemoveFromCart extends React.Component {
       itemQtyArr.push(i)
     }
     return (
-      <div>
+      <div className="remove-cart">
         <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
           <label>
             Change Qty:
@@ -65,6 +65,8 @@ class RemoveFromCart extends React.Component {
         >
           Remove from cart
         </button>
+        <br />
+        <br />
       </div>
     )
   }

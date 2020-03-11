@@ -5,7 +5,6 @@ import RemoveFromCart from './RemoveFromCart'
 
 export class Cart extends React.Component {
   componentDidMount() {
-    console.log('HERE IS YOUR USER ID', this.props.user.id)
     this.props.fetchCart(this.props.user.id)
   }
 
@@ -15,11 +14,12 @@ export class Cart extends React.Component {
       return <p>No cart</p>
     } else {
       return (
-        <div>
+        <div className="single-item-view">
           <div>
             {cart.items.map(item => (
               <div key={item.id}>
                 <p>{item.name}</p>
+                <img src={item.imageUrl} />
                 <p>Quantity: {item.fulfillment.quantity}</p>
                 <p>Price: {item.fulfillment.price}</p>
                 <RemoveFromCart
@@ -30,7 +30,7 @@ export class Cart extends React.Component {
               </div>
             ))}
           </div>
-          <p>subtotal:{cart.subTotal}</p>
+          <p className="subtotal">Subtotal:{cart.subTotal}</p>
           <form action="/checkout">
             <button type="submit" onClick={this.props.processCart} order={cart}>
               Checkout
