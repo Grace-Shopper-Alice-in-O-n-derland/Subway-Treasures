@@ -1,9 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {connect} from 'react-redux'
 
-export default function() {
-  return (
-    <div>
-      <h3>Thank you for your order!</h3>
-    </div>
-  )
+class Checkout extends React.Component {
+  render() {
+    const newOrder = this.props.user.orders.pop()
+    return (
+      <div>
+        <p>Thank you for your order!</p>
+        <p>Your total is ${newOrder.subTotal}!</p>
+      </div>
+    )
+  }
 }
+
+const mapState = state => ({
+  user: state.user
+})
+
+export default connect(mapState, null)(Checkout)

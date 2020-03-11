@@ -9,6 +9,7 @@ export class Cart extends React.Component {
   }
 
   render() {
+    console.log('PROPS', this.props)
     const cart = this.props.cart
     if (!cart || cart === 'undefined' || cart.length === 0) {
       return <p>No cart</p>
@@ -21,16 +22,15 @@ export class Cart extends React.Component {
                 <p>{item.name}</p>
                 <img src={item.imageUrl} />
                 <p>Quantity: {item.fulfillment.quantity}</p>
-                <p>Price: {item.fulfillment.price}</p>
+                <p>Price: {item.fulfillment.itemPrice}</p>
                 <RemoveFromCart
                   itemQty={item.fulfillment.quantity}
-                  itemPrice={item.fulfillment.price}
+                  itemPrice={item.fulfillment.itemPrice}
                   currentItem={item}
                 />
               </div>
             ))}
           </div>
-          <p className="subtotal">Subtotal:{cart.subTotal}</p>
           <form action="/checkout">
             <button
               type="submit"
