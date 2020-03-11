@@ -41,7 +41,7 @@ class RemoveFromCart extends React.Component {
 
   render() {
     let itemQtyArr = []
-    for (let i = 1; i <= this.props.itemQty; i++) {
+    for (let i = 1; i <= this.props.currentItem.quantity; i++) {
       itemQtyArr.push(i)
     }
     return (
