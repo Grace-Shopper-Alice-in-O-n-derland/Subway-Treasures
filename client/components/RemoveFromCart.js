@@ -60,6 +60,7 @@ class RemoveFromCart extends React.Component {
           <input type="submit" value="Change Qty" />
         </form>
         <button
+          className="cart"
           type="submit"
           onClick={() => this.handleDelete(this.props.currentItem)}
         >
