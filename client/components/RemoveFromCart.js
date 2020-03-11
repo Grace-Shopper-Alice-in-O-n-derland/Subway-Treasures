@@ -23,30 +23,29 @@ class RemoveFromCart extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
-    const removeQty = item.quantity + this.props.itemQty - this.state.Qty
+    const userId = this.props.user.id
     const newCartQty = this.state.Qty
-    const newCartPrice = item.price * this.state.Qty
     const itemId = item.id
-    this.props.removeCartItem(itemId, newCartQty, newCartPrice)
-    //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-    this.props.decrementItemQuantity(itemId, removeQty)
+    this.props.removeCartItem(itemId, userId, newCartQty)
+    // const removeQty = item.quantity + this.props.itemQty - this.state.Qty
+    // this.props.decrementItemQuantity(itemId, removeQty) //replacing this with hook
   }
 
   handleDelete(item) {
+    const userId = this.props.user.id
     const itemId = item.id
-    const removeQty = item.quantity + this.props.itemQty
-    this.props.deleteFromCart(itemId)
-    this.props.decrementItemQuantity(itemId, removeQty)
+    this.props.deleteFromCart(itemId, userId)
+    // const removeQty = item.quantity + this.props.itemQty
+    // this.props.decrementItemQuantity(itemId, removeQty) //replacing this with hook
   }
 
   render() {
-    console.log('STATE', this.state)
     let itemQtyArr = []
-    for (let i = 1; i <= this.props.itemQty; i++) {
+    for (let i = 1; i <= this.props.currentItem.quantity; i++) {
       itemQtyArr.push(i)
     }
     return (
-      <div>
+      <div className="remove-cart">
         <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
           <label>
             Change Qty:
@@ -66,17 +65,22 @@ class RemoveFromCart extends React.Component {
         >
           Remove from cart
         </button>
+        <br />
+        <br />
       </div>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  removeFromCart: id => dispatch(removeFromCart(id)),
-  decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity)),
-  removeCartItem: (id, qty, price) => dispatch(removeCartItem(id, qty, price)),
-  deleteFromCart: id => dispatch(deleteFromCart(id))
+const mapState = state => ({
+  cart: state.cart.cart,
+  user: state.user
 })
 
-export default connect(null, mapDispatchToProps)(RemoveFromCart)
+const mapDispatchToProps = dispatch => ({
+  removeCartItem: (id, qty, price, user) =>
+    dispatch(removeCartItem(id, qty, price, user)),
+  deleteFromCart: (id, user) => dispatch(deleteFromCart(id, user))
+})
+
+export default connect(mapState, mapDispatchToProps)(RemoveFromCart)

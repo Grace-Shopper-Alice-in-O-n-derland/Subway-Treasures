@@ -24,10 +24,8 @@ export class Items extends React.Component {
           {items.map(element => (
             <div key={element.id} className="indiv-item-on-homepage">
               <div className="indiv-item-info">
-                <Link Link to={`/items/${element.id}`}>
-                  {element.name}
-                </Link>
-                <img className="image-on-homepage" src={element.imageUrl} />
+                <Link to={`/items/${element.id}`}>{element.name}</Link>
+                {/* <img className="image-on-homepage" src={element.imageUrl} /> */}
                 <p>${element.price}</p>
               </div>
             </div>

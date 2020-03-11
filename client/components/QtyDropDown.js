@@ -1,7 +1,7 @@
 import React from 'react'
-import {addToCart, addCartItem} from '../store/cart'
+import {addToCartThunk, addCartItem} from '../store/cart'
 import {connect} from 'react-redux'
-import {decrementItemQuantity} from '../store/item'
+const _ = require('lodash')
 
 class QtyDropDown extends React.Component {
   constructor(props) {
@@ -23,39 +23,50 @@ class QtyDropDown extends React.Component {
 
   handleSubmit(item) {
     event.preventDefault()
-    const purchaseQty = this.state.Qty
+    const userId = this.props.user.id
     const itemId = item.id
-    const newItemQty = item.quantity - this.state.Qty
-    const itemPrice = item.price * purchaseQty
-    this.props.addCartItem(itemId, purchaseQty, itemPrice)
-    //for the addToCart method both the item we are adding and the quantity of that item to be added are parameters
-    this.props.decrementItemQuantity(itemId, newItemQty)
+    const purchaseQty = this.state.Qty
+    const itemPrice = item.price
+    if (_.isEmpty(this.props.user)) {
+      this.props.addToCartThunk(item, purchaseQty, itemPrice)
+    } else {
+      this.props.addCartItem(itemId, purchaseQty, itemPrice, userId)
+    }
   }
 
   render() {
     return (
-      <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
-        <label>
-          Qty:
-          <select value={this.state.value} onChange={this.handleChange}>
-            {this.props.quantityArr.map(element => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </select>
-        </label>
-        <input type="submit" value="Add to cart" />
-      </form>
+      <div className="single-item-view">
+        <form onSubmit={() => this.handleSubmit(this.props.currentItem)}>
+          <label>
+            Qty:
+            <select value={this.state.value} onChange={this.handleChange}>
+              {this.props.quantityArr.map(element => (
+                <option key={element} value={element}>
+                  {element}
+                </option>
+              ))}
+            </select>
+          </label>
+          {/* <input type="submit" value="Add to cart" /> */}
+          <br />
+          <button type="submit">Add to cart</button>
+        </form>
+      </div>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  addToCart: id => dispatch(addToCart(id)),
-  decrementItemQuantity: (id, quantity) =>
-    dispatch(decrementItemQuantity(id, quantity)),
-  addCartItem: (id, qty, price) => dispatch(addCartItem(id, qty, price))
+const mapState = state => ({
+  user: state.user,
+  items: state.item,
+  cart: state.cart
 })
 
-export default connect(null, mapDispatchToProps)(QtyDropDown)
+const mapDispatchToProps = dispatch => ({
+  addToCartThunk: item => dispatch(addToCartThunk(item)),
+  addCartItem: (id, qty, price, user) =>
+    dispatch(addCartItem(id, qty, price, user))
+})
+
+export default connect(mapState, mapDispatchToProps)(QtyDropDown)

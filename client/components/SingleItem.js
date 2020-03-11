@@ -1,5 +1,5 @@
 import React from 'react'
-import {fetchItem, decrementItemQuantity} from '../store/item'
+import {fetchItem} from '../store/item'
 import {connect} from 'react-redux'
 import NotFound from './NotFound'
 import QtyDropDown from './QtyDropDown'
@@ -10,7 +10,6 @@ export class SingleItem extends React.Component {
   }
 
   render() {
-    // console.log('SINGLE ITEM PROPS', this.props)
     const item = this.props.items.selectedItem
     let quantityArr = []
     for (let i = 1; i <= item.quantity; i++) {

@@ -20,7 +20,8 @@ const Item = db.define('item', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    // defaultValue: 'https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/181/2019/09/09091628/Image-Coming-Soon.png',
+    defaultValue:
+      'https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/181/2019/09/09091628/Image-Coming-Soon.png',
     validate: {
       isUrl: true
     }

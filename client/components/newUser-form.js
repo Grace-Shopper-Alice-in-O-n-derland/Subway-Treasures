@@ -11,7 +11,7 @@ const NewUserForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name} className="form-signup">
+      <form className="form-signup" onSubmit={handleSubmit} name={name}>
         <div>
           <h1>
             <span className="sign-up">Sign Up</span>
