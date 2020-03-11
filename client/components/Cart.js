@@ -9,7 +9,6 @@ export class Cart extends React.Component {
   }
 
   render() {
-    console.log('PROPS', this.props)
     const cart = this.props.cart
     if (!cart || cart === 'undefined' || cart.length === 0) {
       return <p>No cart</p>
@@ -20,7 +19,7 @@ export class Cart extends React.Component {
             {cart.items.map(item => (
               <div key={item.id}>
                 <p>{item.name}</p>
-                <img src={item.imageUrl} />
+                <img className="single-item-image" src={item.imageUrl} />
                 <p>Quantity: {item.fulfillment.quantity}</p>
                 <p>Price: {item.fulfillment.itemPrice}</p>
                 <RemoveFromCart
